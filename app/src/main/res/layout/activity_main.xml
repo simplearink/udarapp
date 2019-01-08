@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/window"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="175dp"
+        android:text="@string/question"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"/>
+
+    <Button
+        android:id="@+id/buttonSingleMode"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:onClick="onClick"
+        android:text="@string/single_game_mode"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"/>
+
+    <Button
+        android:id="@+id/buttonMultipleMode"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:onClick="onClick"
+        android:text="@string/multiple_game_mode"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
+        android:background="@color/colorPrimaryDark"/>
+
+</LinearLayout>
