@@ -3,4 +3,8 @@
     <string name="question">Сыграем в ударЯшку?</string>
     <string name="single_game_mode">Проверка</string>
     <string name="multiple_game_mode">Выбор</string>
+    <string name="ege_mode">Режим ЕГЭ</string>
+    <string name="contact">Связаться с разработчиками</string>
+    <string name="settings">Настройки</string>
+    <string name="back">Назад</string>
 </resources>

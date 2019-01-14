@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class SingleGameController {
         private ArrayList<SingleResultObject> result;
 
-
-        public void SingleGameController() {
+        SingleGameController() {
             result = new ArrayList<>();
         }
 
@@ -16,5 +15,11 @@ public class SingleGameController {
 
         public SingleResultObject get(int index) {
             return result.get(index);
+        }
+
+        public SingleResultObject getLast() {return result.get(result.size() - 1); }
+
+        public int size() {
+            return result.size();
         }
 }

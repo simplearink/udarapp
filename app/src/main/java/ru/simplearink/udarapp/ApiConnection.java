@@ -14,6 +14,8 @@ import java.util.Scanner;
 
 class ApiConnection extends AsyncTask<Void, Void, String[]> {
     int responseCode;
+
+    String wordID;
     String word;
     String correctness;
 
@@ -30,7 +32,7 @@ class ApiConnection extends AsyncTask<Void, Void, String[]> {
             e.printStackTrace();
         }
 
-        String[] resArray = {word, correctness};
+        String[] resArray = {word, correctness, wordID};
         return resArray;
     }
 
@@ -75,7 +77,7 @@ class ApiConnection extends AsyncTask<Void, Void, String[]> {
             System.out.println(jsonObject.get("word"));
             word = jsonObject.get("word").toString().replace("\"", "");
             correctness = jsonObject.get("answer").toString();
+            wordID = jsonObject.get("word_id").toString();
         }
     }
-
 }

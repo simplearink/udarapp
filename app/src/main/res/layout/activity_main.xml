@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/window"
+    android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/settings"
+        android:src="@drawable/gear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:scaleType="fitCenter"
+        android:background="@color/colorAccent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="165dp"
         android:text="@string/question"
         android:gravity="center"
         android:textSize="25sp"
@@ -20,8 +33,7 @@
         android:id="@+id/buttonSingleMode"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:onClick="onClick"
+        android:layout_marginTop="40dp"
         android:text="@string/single_game_mode"
         android:textSize="20sp"
         android:textColor="@color/colorAccent"
@@ -32,7 +44,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:onClick="onClick"
         android:text="@string/multiple_game_mode"
         android:textSize="20sp"
         android:textColor="@color/colorAccent"

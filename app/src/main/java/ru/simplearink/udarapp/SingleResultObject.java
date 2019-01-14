@@ -3,10 +3,10 @@ package ru.simplearink.udarapp;
 public class SingleResultObject {
     private int wordId;
     private String word;
-    private boolean answer;
+    private String answer;
     private boolean userAnswer;
 
-    SingleResultObject(int newWordId, String newWord, boolean newAnswer, boolean newUserAnswer) {
+    SingleResultObject(int newWordId, String newWord, String newAnswer, boolean newUserAnswer) {
         wordId = newWordId;
         word = newWord;
         answer = newAnswer;
@@ -21,7 +21,7 @@ public class SingleResultObject {
         return word;
     }
 
-    public boolean getAnswer() {
+    public String getAnswer() {
         return answer;
     }
 
@@ -29,8 +29,20 @@ public class SingleResultObject {
         return userAnswer;
     }
 
-    public boolean isUserAnswerCorrect() {
-        if (answer == userAnswer) return true;
-        else return false;
+    public void setWordId(int wordId) {
+        this.wordId = wordId;
     }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public void setUserAnswer(boolean userAnswer) {
+        this.userAnswer = userAnswer;
+    }
+
 }
