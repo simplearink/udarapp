@@ -12,7 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-public class ApiConnection extends AsyncTask<Void, Void, String[]> {
+class ApiConnection extends AsyncTask<Void, Void, String[]> {
     int responseCode;
     String word;
     String correctness;

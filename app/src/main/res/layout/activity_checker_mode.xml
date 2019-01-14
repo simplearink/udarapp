@@ -12,14 +12,6 @@
         android:gravity="center"
         android:textSize="50sp" />
 
-    <Button
-        android:id="@+id/buttonUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="30dp"
-        android:onClick="onClick"
-        android:text="Start" />
-
     <TextView
         android:id="@+id/resText"
         android:layout_width="match_parent"
