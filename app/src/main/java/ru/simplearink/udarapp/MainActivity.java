@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 
 public class MainActivity extends Activity {
-    private ImageButton settingsButton;
+    private Button settingsButton;
     private Button checkerModeButton;
     private Button chooseModeButton;
 

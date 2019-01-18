@@ -5,11 +5,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/counter"
+            android:layout_width="130dp"
+            android:text="@string/counter_init"
+            android:layout_height="match_parent"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:text="0"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:paddingLeft="10dp"/>
+
+        <ImageButton
+            android:id="@+id/finishSingle"
+            android:src="@drawable/flag"
+            android:tint="#FFFFFF"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:background="@color/colorPrimary" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="200dp"
         android:textColor="@color/colorAccent"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"

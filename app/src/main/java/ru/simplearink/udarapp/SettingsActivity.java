@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 
 public class SettingsActivity extends Activity {
     private Button backButton;
+    private Switch egeSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +18,10 @@ public class SettingsActivity extends Activity {
 
         backButton = findViewById(R.id.back);
         backButton.setOnClickListener(oclBtnBack);
+
+        egeSwitch = findViewById(R.id.egeSwitch);
+        egeSwitch.setOnClickListener(oclEgeSwitch);
+
     }
 
     View.OnClickListener oclBtnBack = new View.OnClickListener() {
@@ -25,4 +31,13 @@ public class SettingsActivity extends Activity {
             startActivity(intent);
         }
     };
+
+    View.OnClickListener oclEgeSwitch = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
+
+
 }

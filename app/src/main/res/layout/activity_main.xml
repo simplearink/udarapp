@@ -7,16 +7,102 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/settings"
-        android:src="@drawable/gear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxWidth="50dp"
-        android:maxHeight="50dp"
-        android:scaleType="fitCenter"
-        android:background="@color/colorAccent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="5dp">
+
+
+        <TextView
+            android:id="@+id/bestTextView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/roudedrec"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/settings"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="97dp"
+            android:layout_marginLeft="97dp"
+            android:layout_toEndOf="@+id/bestTextView"
+            android:layout_toRightOf="@+id/bestTextView"
+            android:background="@drawable/roudedrec"
+            android:scaleType="fitCenter"
+            android:text="@string/sett"
+            android:textColor="@color/colorAccent"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/levelTextView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="97dp"
+            android:layout_marginLeft="97dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toEndOf="@+id/settings"
+            android:layout_toRightOf="@+id/settings"
+            android:background="@drawable/roudedrec"
+            android:padding="5dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/bestText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bestTextView"
+            android:layout_alignLeft="@+id/bestTextView"
+            android:layout_alignTop="@+id/bestTextView"
+            android:layout_alignEnd="@+id/bestTextView"
+            android:layout_alignRight="@+id/bestTextView"
+            android:layout_alignBottom="@+id/bestTextView"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="@string/best"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/levelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/levelTextView"
+            android:layout_alignLeft="@+id/levelTextView"
+            android:layout_alignTop="@+id/levelTextView"
+            android:layout_alignEnd="@+id/levelTextView"
+            android:layout_alignRight="@+id/levelTextView"
+            android:layout_alignBottom="@+id/levelTextView"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="@string/level"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/textView"
@@ -30,23 +116,31 @@
         android:background="@color/colorPrimaryDark"/>
 
     <Button
-        android:id="@+id/buttonSingleMode"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/single_game_mode"
-        android:textSize="20sp"
-        android:textColor="@color/colorAccent"
-        android:background="@color/colorPrimaryDark"/>
-
-    <Button
         android:id="@+id/buttonMultipleMode"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginTop="40dp"
         android:text="@string/multiple_game_mode"
         android:textSize="20sp"
         android:textColor="@color/colorAccent"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="@drawable/roudedrec" />
+
+    <Button
+        android:id="@+id/buttonSingleMode"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/single_game_mode"
+        android:textSize="20sp"
+        android:textColor="@color/colorAccent"
+        android:background="@drawable/roudedrec" />
 
 </LinearLayout>

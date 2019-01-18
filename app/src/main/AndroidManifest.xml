@@ -19,7 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".CheckerModeActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".ResultActivity" />
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/roundedrec" />
     </application>
 
 </manifest>

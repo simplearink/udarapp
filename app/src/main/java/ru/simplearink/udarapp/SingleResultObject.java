@@ -1,6 +1,8 @@
 package ru.simplearink.udarapp;
 
-public class SingleResultObject {
+import java.io.Serializable;
+
+public class SingleResultObject implements Serializable {
     private int wordId;
     private String word;
     private String answer;

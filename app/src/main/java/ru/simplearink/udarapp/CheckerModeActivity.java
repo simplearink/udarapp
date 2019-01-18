@@ -3,19 +3,26 @@ package ru.simplearink.udarapp;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class CheckerModeActivity extends Activity {
     private TextView updateTextView;
     private View applicationView;
     private ApiConnection connection;
+    private TextView resCounter;
+    private ImageButton finishBtn;
+
     private SingleGameController stats;
+    private SingleResultObject currentWordData;
 
     private boolean correctness;
     private boolean user;
@@ -28,8 +35,11 @@ public class CheckerModeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checker_mode);
 
-        updateTextView = findViewById(R.id.textView);
+        finishBtn = findViewById(R.id.finishSingle);
+        finishBtn.setOnClickListener(oclFinishBtn);
 
+        updateTextView = findViewById(R.id.textView);
+        resCounter = findViewById(R.id.counter);
 
         applicationView = findViewById(R.id.window);
         applicationView.setOnTouchListener(otlSwipe);
@@ -63,19 +73,31 @@ public class CheckerModeActivity extends Activity {
                             }
                             user = false;
                         }
-                        stats.getLast().setUserAnswer(user);
-                        updateWord();
-                        counter++;
-                        if (counter == 10) {
-                            for (int i = 0; i < stats.size(); i++) {
-                                System.out.println(stats.get(i).getWordId() + " " + stats.get(i).getWord() +
-                                        " " + stats.get(i).getAnswer() + " " + stats.get(i).getUserAnswer());
-                            }
-                            counter = 0;
+                        if (user == correctness) {
+                            String r = String.valueOf(++counter);
+                            System.out.println(counter);
+                            resCounter.setText(r);
                         }
+                        currentWordData.setUserAnswer(user);
+                        stats.add(currentWordData);
+                        updateWord();
                         break;
                 }
             return true;
+        }
+    };
+
+    View.OnClickListener oclFinishBtn = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent result = new Intent(CheckerModeActivity.this, ResultActivity.class);
+            result.putExtra("size", stats.size());
+                for (int i = 0; i < stats.size(); i++) {
+                    System.out.println(stats.get(i).getWordId() + " " + stats.get(i).getWord() +
+                            " " + stats.get(i).getAnswer() + " " + stats.get(i).getUserAnswer());
+                    result.putExtra("stats" + i, stats.get(i));
+                }
+            startActivity(result);
         }
     };
 
@@ -98,7 +120,7 @@ public class CheckerModeActivity extends Activity {
         updateTextView.setText(res[0]);
         correctness = correct(res[1]);
 
-        stats.add(new SingleResultObject(Integer.parseInt(res[2]), res[0], res[1], true));
+        currentWordData = new SingleResultObject(Integer.parseInt(res[2]), res[0], res[1], true);
     }
 
     public boolean correct(String answer) {

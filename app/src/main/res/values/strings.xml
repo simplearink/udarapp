@@ -6,5 +6,9 @@
     <string name="ege_mode">Режим ЕГЭ</string>
     <string name="contact">Связаться с разработчиками</string>
     <string name="settings">Настройки</string>
+    <string name="sett">Н</string>
     <string name="back">Назад</string>
+    <string name="counter_init">0</string>
+    <string name="best">Лучшее</string>
+    <string name="level">Уровень</string>
 </resources>
