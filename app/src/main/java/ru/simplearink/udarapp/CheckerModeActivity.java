@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ public class CheckerModeActivity extends Activity {
     private View applicationView;
     private ApiConnection connection;
     private TextView resCounter;
-    private ImageButton finishBtn;
+    private Button finishBtn;
 
     private SingleGameController stats;
     private SingleResultObject currentWordData;
@@ -39,7 +40,7 @@ public class CheckerModeActivity extends Activity {
         finishBtn.setOnClickListener(oclFinishBtn);
 
         updateTextView = findViewById(R.id.textView);
-        resCounter = findViewById(R.id.counter);
+        resCounter = findViewById(R.id.counterChecker);
 
         applicationView = findViewById(R.id.window);
         applicationView.setOnTouchListener(otlSwipe);

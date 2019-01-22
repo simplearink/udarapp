@@ -11,4 +11,5 @@
     <string name="counter_init">0</string>
     <string name="best">Лучшее</string>
     <string name="level">Уровень</string>
+    <string name="finish">Завершить</string>
 </resources>

@@ -5,52 +5,168 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary">
+        android:layout_height="65dp"
+        android:layout_marginTop="5dp">
+
 
         <TextView
-            android:id="@+id/counter"
-            android:layout_width="130dp"
-            android:text="@string/counter_init"
-            android:layout_height="match_parent"
-            android:textSize="40sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"
-            android:paddingLeft="10dp"/>
-
-        <TextView
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
+            android:id="@+id/counterChecker"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/roudedrec"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:singleLine="true"
             android:text="0"
-            android:textSize="40sp"
-            android:gravity="center"
-            android:textStyle="bold"
+            android:textSize="35sp"
+            android:gravity="center|bottom"
             android:textColor="@color/colorAccent"
-            android:paddingLeft="10dp"/>
+            android:textStyle="bold"/>
 
-        <ImageButton
-            android:id="@+id/finishSingle"
-            android:src="@drawable/flag"
-            android:tint="#FFFFFF"
-            android:layout_width="130dp"
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="108dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_toEndOf="@+id/counterChecker"
+            android:layout_toRightOf="@+id/counterChecker"
+            android:background="@drawable/roudedrec"
+            android:scaleType="fitCenter"
+            android:textColor="@color/colorAccent"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/sameCounterChecker"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toEndOf="@+id/time"
+            android:layout_toRightOf="@+id/time"
+            android:background="@drawable/roudedrec"
+            android:padding="5dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/bestText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorAccent"
-            android:background="@color/colorPrimary" />
+            android:layout_alignStart="@+id/counterChecker"
+            android:layout_alignLeft="@+id/counterChecker"
+            android:layout_alignTop="@+id/counterChecker"
+            android:layout_alignEnd="@+id/counterChecker"
+            android:layout_alignRight="@+id/counterChecker"
+            android:layout_alignBottom="@+id/counterChecker"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="@string/best"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/levelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/sameCounterChecker"
+            android:layout_alignLeft="@+id/sameCounterChecker"
+            android:layout_alignTop="@+id/sameCounterChecker"
+            android:layout_alignEnd="@+id/sameCounterChecker"
+            android:layout_alignRight="@+id/sameCounterChecker"
+            android:layout_alignBottom="@+id/sameCounterChecker"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="@string/best"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:textColor="@color/colorAccent"
-        android:background="@color/colorPrimaryDark"
+        android:layout_height="70dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/roudedrec"
         android:gravity="center"
+        android:textColor="@color/colorAccent"
         android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/dot1"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="185dp"
+        android:layout_marginLeft="185dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/dot"
+        android:paddingLeft="50dp"
+        android:scaleType="fitCenter"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/dot2"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="185dp"
+        android:layout_marginLeft="185dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/dot"
+        android:paddingLeft="50dp"
+        android:scaleType="fitCenter"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/dot3"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="185dp"
+        android:layout_marginLeft="185dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/dot"
+        android:paddingLeft="50dp"
+        android:scaleType="fitCenter"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/finishSingle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginRight="115dp"
+        android:layout_marginEnd="115dp"
+        android:text="@string/finish"
+        android:textSize="25sp"
+        android:textColor="@color/colorAccent"
+        android:background="@drawable/roudedrec" />
 
 </LinearLayout>
