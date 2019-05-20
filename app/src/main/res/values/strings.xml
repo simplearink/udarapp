@@ -27,4 +27,6 @@
     <string name="wholeSet">Всего</string>
     <string name="avgTime">Среднее время</string>
     <string name="bestTime">Лучшее время</string>
+    <string name="quest">Вопрос 1</string>
+    <string name="correct">Верно</string>
 </resources>

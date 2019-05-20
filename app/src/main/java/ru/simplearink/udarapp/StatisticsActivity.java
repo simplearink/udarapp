@@ -18,6 +18,8 @@ public class StatisticsActivity extends AppCompatActivity {
 
         backButton = findViewById(R.id.statBack);
         backButton.setOnClickListener(oclBack);
+
+        
     }
 
     View.OnClickListener oclBack = new View.OnClickListener() {

@@ -6,7 +6,8 @@
     android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_vertical">
 
     <ImageButton
         android:id="@+id/settings"
@@ -32,7 +33,7 @@
         android:layout_marginRight="100dp"/>
 
     <Button
-        android:id="@+id/buttonMultipleMode"
+        android:id="@+id/buttonSingleMode"
         android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -41,7 +42,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginTop="50dp"
-        android:text="@string/multiple_game_mode"
+        android:text="@string/single_game_mode"
         android:textSize="25sp"
         android:textColor="@color/colorAccent"
         android:background="@drawable/roudedrec" />
@@ -86,7 +87,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/buttonSingleMode"
+        android:id="@+id/buttonMultipleMode"
         android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -94,7 +95,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginEnd="50dp"
-        android:text="@string/single_game_mode"
+        android:text="@string/multiple_game_mode"
         android:textSize="25sp"
         android:textColor="@color/colorAccent"
         android:background="@drawable/roudedrec" />

@@ -3,31 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/window"
-    android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
+    android:gravity="center_vertical">
 
     <TextView
         android:id="@+id/settTextView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/roudedrec"
         android:backgroundTint="@color/colorPrimary"
+        android:gravity="center"
         android:padding="5dp"
         android:scaleType="fitCenter"
         android:singleLine="true"
         android:text="@string/results"
-        android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/roudedrec"
-        android:gravity="center"
         android:textColor="@color/colorAccent"
-        android:textSize="40sp"/>
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -41,23 +42,21 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="5dp"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/roudedrec"
+            android:gravity="center|bottom"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:singleLine="true"
             android:text="@string/counter_init"
-            android:textSize="40sp"
-            android:gravity="center|bottom"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"/>
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/wholeSetSize"
-            android:text="@string/counter_init"
-            android:gravity="center|bottom"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_alignParentTop="true"
@@ -67,9 +66,11 @@
             android:layout_toEndOf="@+id/mistakesCounter"
             android:layout_toRightOf="@+id/mistakesCounter"
             android:background="@drawable/roudedrec"
+            android:gravity="center|bottom"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:scaleType="fitCenter"
+            android:text="@string/counter_init"
             android:textColor="@color/colorAccent"
             android:textSize="55sp"
             android:textStyle="bold" />
@@ -78,22 +79,22 @@
             android:id="@+id/correctCounter"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="5dp"
             android:layout_alignParentTop="true"
             android:layout_marginStart="62dp"
             android:layout_marginLeft="62dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:layout_toEndOf="@+id/wholeSetSize"
             android:layout_toRightOf="@+id/wholeSetSize"
             android:background="@drawable/roudedrec"
+            android:gravity="center|bottom"
             android:padding="5dp"
             android:singleLine="true"
             android:text="@string/counter_init"
-            android:textSize="40sp"
-            android:gravity="center|bottom"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"/>
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/correctText"
@@ -174,23 +175,22 @@
 
         <TextView
             android:id="@+id/bestTime"
-            android:text="@string/counter_init"
-            android:textSize="27sp"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:background="@drawable/roudedrec"
+            android:gravity="center|bottom"
             android:scaleType="fitCenter"
             android:singleLine="true"
-            android:gravity="center|bottom"
+            android:text="@string/counter_init"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"/>
+            android:textSize="27sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/avgTime"
-            android:text="@string/counter_init"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
@@ -204,6 +204,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:scaleType="fitCenter"
+            android:text="@string/counter_init"
             android:textColor="@color/colorAccent"
             android:textSize="27sp"
             android:textStyle="bold" />
@@ -257,35 +258,35 @@
 
     <Button
         android:id="@+id/statsSingle"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="115dp"
         android:layout_marginStart="115dp"
-        android:layout_marginRight="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="115dp"
-        android:text="@string/stats"
-        android:textSize="25sp"
-        android:textColor="@color/colorAccent"
+        android:layout_marginRight="115dp"
         android:background="@drawable/roudedrec"
-        android:backgroundTint="@color/colorPrimary"/>
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/stats"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/toMainButton"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="115dp"
         android:layout_marginStart="115dp"
-        android:layout_marginRight="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="115dp"
-        android:text="@string/finish"
-        android:textSize="25sp"
-        android:textColor="@color/colorAccent"
+        android:layout_marginRight="115dp"
         android:background="@drawable/roudedrec"
-        android:backgroundTint="@color/colorPrimary"/>
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/finish"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp" />
 
 
 </LinearLayout>

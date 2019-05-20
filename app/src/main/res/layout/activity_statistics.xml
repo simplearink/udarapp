@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="20dp">
 
 
         <ImageButton
@@ -17,40 +17,50 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/roudedrec"
             android:backgroundTint="@color/colorPrimary"
+            android:gravity="center"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:singleLine="true"
-            android:textSize="35sp"
-            android:gravity="center"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
             android:src="@drawable/back"
-            android:tint="@color/colorAccent"/>
+            android:textColor="@color/colorAccent"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:tint="@color/colorAccent" />
 
         <TextView
-            android:layout_width="208dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_toEndOf="@+id/statBack"
-            android:layout_toRightOf="@+id/statBack"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
             android:background="@drawable/roudedrec"
             android:backgroundTint="@color/colorPrimary"
+            android:gravity="center"
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:singleLine="true"
             android:text="@string/stats"
-            android:textSize="30sp"
-            android:gravity="center"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/singleStatsList"/>
 
 
 </LinearLayout>
