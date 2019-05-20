@@ -126,19 +126,19 @@ public class CheckerModeActivity extends Activity {
         @Override
         public void onClick(View v) {
             Intent result = new Intent(CheckerModeActivity.this, ResultActivity.class);
-            result.putExtra("size", stats.size());
+            SharedPreferences statistics = getSharedPreferences(ResultActivity.APP_STATS, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = statistics.edit();
+            editor.putInt(ResultActivity.APP_STATS_RES_SIZE, stats.size());
+            editor.apply();
             for (int i = 0; i < stats.size(); i++) {
                 System.out.println(stats.get(i).getWordId() + " " + stats.get(i).getWord() +
                         " " + stats.get(i).getAnswer() + " " + stats.get(i).getUserAnswer());
-                result.putExtra("stats" + i, stats.get(i));
+                editor.putInt(ResultActivity.APP_STATS_RES_ID + i, stats.get(i).getWordId());
+                editor.putString(ResultActivity.APP_STATS_RES_WORD + i, stats.get(i).getWord());
+                editor.putString(ResultActivity.APP_STATS_RES_CORRECT + i, stats.get(i).getAnswer());
+                editor.putString(ResultActivity.APP_STATS_RES_USERS + i, String.valueOf(stats.get(i).getUserAnswer()));
             }
-            /*result.putExtra("bestTime", bestTime);
-            result.putExtra("mistakes", counter - correctCounter);
-            result.putExtra("correct", correctCounter);
-            result.putExtra("avgTime", wholeTime / correctCounter);*/
 
-            SharedPreferences stats = getSharedPreferences(ResultActivity.APP_STATS, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = stats.edit();
             editor.putInt(ResultActivity.APP_STATS_MISTAKES, counter - correctCounter);
             editor.putInt(ResultActivity.APP_STATS_CORRECT, correctCounter);
             editor.putInt(ResultActivity.APP_STATS_WHOLE, counter);
@@ -168,7 +168,7 @@ public class CheckerModeActivity extends Activity {
         updateTextView.setText(res[0]);
         correctness = correct(res[1]);
 
-        currentWordData = new SingleResultObject(Integer.parseInt(res[2]), res[0], res[1], true);
+        currentWordData = new SingleResultObject(0, Integer.parseInt(res[2]), res[0], res[1], true);
         startTime = System.currentTimeMillis();
     }
 

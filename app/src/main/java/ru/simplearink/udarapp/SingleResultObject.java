@@ -1,19 +1,23 @@
 package ru.simplearink.udarapp;
 
-import java.io.Serializable;
+import java.io.Serializable;;
 
 public class SingleResultObject implements Serializable {
+    private int iter;
     private int wordId;
     private String word;
     private String answer;
     private boolean userAnswer;
 
-    SingleResultObject(int newWordId, String newWord, String newAnswer, boolean newUserAnswer) {
+    SingleResultObject(int newIter, int newWordId, String newWord, String newAnswer, boolean newUserAnswer) {
+        iter = newIter;
         wordId = newWordId;
         word = newWord;
         answer = newAnswer;
         userAnswer = newUserAnswer;
     }
+
+    public int getIter() {return iter; }
 
     public int getWordId() {
         return wordId;

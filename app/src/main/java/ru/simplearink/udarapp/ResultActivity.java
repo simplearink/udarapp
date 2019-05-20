@@ -20,6 +20,12 @@ public class ResultActivity extends Activity {
     public static final String APP_STATS_BEST = "bestTime";
     public static final String APP_STATS_AVG = "avgTime";
 
+    public static final String APP_STATS_RES_SIZE = "size";
+    public static final String APP_STATS_RES_ID = "wordID";
+    public static final String APP_STATS_RES_WORD = "word";
+    public static final String APP_STATS_RES_CORRECT = "correctAns";
+    public static final String APP_STATS_RES_USERS = "usersAns";
+
     SharedPreferences statsPreferences;
 
     private Button backButton;
@@ -84,15 +90,10 @@ public class ResultActivity extends Activity {
     View.OnClickListener oclBackMain = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            SharedPreferences stats = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = stats.edit();
-            editor.putInt(APP_STATS_MISTAKES, 0);
-            editor.putInt(APP_STATS_CORRECT, 0);
-            editor.putInt(APP_STATS_WHOLE, 0);
-            editor.putString(APP_STATS_BEST, "0");
-            editor.putString(APP_STATS_AVG, "0");
+            SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = shared.edit();
+            editor.clear();
             editor.apply();
-
             Intent backToMain = new Intent(ResultActivity.this, MainActivity.class);
             startActivity(backToMain);
         }
