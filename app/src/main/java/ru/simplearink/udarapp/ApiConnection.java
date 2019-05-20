@@ -19,6 +19,19 @@ class ApiConnection extends AsyncTask<Void, Void, String[]> {
     String word;
     String correctness;
 
+    int egeModeOn;
+    int gameMode;
+
+    public ApiConnection(boolean egeMode, int mode) { // mode: 0 - checker mode; 1 - selection mode
+        if (egeMode) {
+            egeModeOn = 1;
+        } else {
+            egeModeOn = 0;
+        }
+
+        gameMode = mode;
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -41,16 +54,22 @@ class ApiConnection extends AsyncTask<Void, Void, String[]> {
         super.onPostExecute(result);
     }
 
+    //method now works only for Checker Mode
     protected void connectApi() throws IOException {
-        URL url = new URL("http://142.93.136.40/api/v1.1/words/get_word/?type=1");
-        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        URL url;
+        if (gameMode == 0) {
+            url = new URL("http://api.accent-checker.ru/api/v1.1/words/get_word/?type=" + egeModeOn);
+        } else {
+            url = new URL("http://www.api.accent-checker.ru/v2.0/words/get_question/?type=" + egeModeOn);
+        }
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.connect();
         responseCode = conn.getResponseCode();
-        if(responseCode != 200)
+        if (responseCode != 200)
             throw new RuntimeException("HttpResponseCode:" + responseCode);
         else {
-            parseJSON(url);
+            parseJSON(url); // TODO: solve this for both modes
         }
         conn.disconnect();
     }
@@ -58,9 +77,8 @@ class ApiConnection extends AsyncTask<Void, Void, String[]> {
     protected void parseJSON(URL url) throws IOException {
         String inline = "";
         Scanner sc = new Scanner(url.openStream());
-        while(sc.hasNext())
-        {
-            inline+=sc.nextLine();
+        while (sc.hasNext()) {
+            inline += sc.nextLine();
         }
         System.out.println("\nJSON Response in String format");
         System.out.println(inline);

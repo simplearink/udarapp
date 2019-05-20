@@ -22,7 +22,7 @@
             android:padding="5dp"
             android:scaleType="fitCenter"
             android:singleLine="true"
-            android:text="0"
+            android:text="@string/counter_init"
             android:textSize="35sp"
             android:gravity="center|bottom"
             android:textColor="@color/colorAccent"
@@ -33,31 +33,39 @@
             android:layout_width="108dp"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginStart="73dp"
+            android:layout_marginLeft="73dp"
+            android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/counterChecker"
             android:layout_toRightOf="@+id/counterChecker"
             android:background="@drawable/roudedrec"
+            android:gravity="center_horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:scaleType="fitCenter"
             android:textColor="@color/colorAccent"
-            android:paddingRight="5dp"
-            android:paddingLeft="5dp"
-            android:textSize="40sp" />
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/sameCounterChecker"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginStart="73dp"
+            android:layout_marginLeft="73dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             android:layout_toEndOf="@+id/time"
             android:layout_toRightOf="@+id/time"
             android:background="@drawable/roudedrec"
             android:padding="5dp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:text="@string/counter_init"
+            android:textSize="35sp"
+            android:gravity="center|bottom"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/bestText"
@@ -76,7 +84,7 @@
             android:layout_marginRight="0dp"
             android:layout_marginBottom="40dp"
             android:gravity="center"
-            android:text="@string/best"
+            android:text="@string/mistakes"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -98,7 +106,7 @@
             android:layout_marginRight="0dp"
             android:layout_marginBottom="40dp"
             android:gravity="center"
-            android:text="@string/best"
+            android:text="@string/rightAns"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -109,15 +117,15 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="160dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
         android:background="@drawable/roudedrec"
         android:gravity="center"
         android:textColor="@color/colorAccent"
-        android:textSize="50sp" />
+        android:textSize="40sp" />
 
     <TextView
         android:id="@+id/dot1"
@@ -157,6 +165,7 @@
 
     <Button
         android:id="@+id/finishSingle"
+        android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="20dp"

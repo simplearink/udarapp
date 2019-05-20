@@ -7,9 +7,24 @@
     <string name="contact">Связаться с разработчиками</string>
     <string name="settings">Настройки</string>
     <string name="sett">Н</string>
-    <string name="back">Назад</string>
+    <string name="back">Вернуться</string>
     <string name="counter_init">0</string>
-    <string name="best">Лучшее</string>
+    <string name="mistakes">Ошибки</string>
+    <string name="rightAns">Верно</string>
     <string name="level">Уровень</string>
     <string name="finish">Завершить</string>
+    <string name="developersTitle">Разработчики</string>
+    <string name="dev1">Арина Кузнецова</string>
+    <string name="dev2">Артемий Быков</string>
+    <string name="copyright">2019, Все права защищены</string>
+    <string name="dev3">Михаил Ткаченко</string>
+    <string name="level_init">3</string>
+    <string name="in_a_row">Подряд</string>
+    <string name="choose_wrong">Выберите неправильное ударение</string>
+    <string name="advertisement">Реклама</string>
+    <string name="results">Результаты</string>
+    <string name="stats">Статистика</string>
+    <string name="wholeSet">Всего</string>
+    <string name="avgTime">Среднее время</string>
+    <string name="bestTime">Лучшее время</string>
 </resources>

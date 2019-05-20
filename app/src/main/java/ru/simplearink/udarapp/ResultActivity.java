@@ -1,7 +1,9 @@
 package ru.simplearink.udarapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,36 +12,97 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ResultActivity extends Activity {
+
+    public static final String APP_STATS = "udarStats";
+    public static final String APP_STATS_MISTAKES = "mistakes";
+    public static final String APP_STATS_WHOLE = "whole";
+    public static final String APP_STATS_CORRECT = "correct";
+    public static final String APP_STATS_BEST = "bestTime";
+    public static final String APP_STATS_AVG = "avgTime";
+
+    SharedPreferences statsPreferences;
+
     private Button backButton;
-    private TextView text;
+    private Button statsButton;
+
+    private TextView mistakesText;
+    private TextView correctText;
+    private TextView wholeCount;
+    private TextView bestTime;
+    private TextView avgTime;
+
     private String str = "";
+
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        statsPreferences = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
+
         backButton = findViewById(R.id.toMainButton);
         backButton.setOnClickListener(oclBackMain);
 
-        text = findViewById(R.id.textView2);
-        
-        Intent intent = getIntent();
+        statsButton = findViewById(R.id.statsSingle);
+        statsButton.setOnClickListener(oclSingleStats);
+
+        mistakesText = findViewById(R.id.mistakesCounter);
+        correctText = findViewById(R.id.correctCounter);
+        wholeCount = findViewById(R.id.wholeSetSize);
+        bestTime = findViewById(R.id.bestTime);
+        avgTime = findViewById(R.id.avgTime);
+
+/*        intent = getIntent();
+
         int size = intent.getIntExtra("size", 0);
         for (int i = 0; i < size; i++) {
             SingleResultObject res = (SingleResultObject) intent.getSerializableExtra("stats" + i);
-            str+=(res.getWordId() + " " + res.getWord() +
+            str += (res.getWordId() + " " + res.getWord() +
                     " " + res.getAnswer() + " " + res.getUserAnswer());
-        }
+        }*/
 
-        text.setText(str);
+        SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
+
+        int mistakes = shared.getInt(APP_STATS_MISTAKES, 0);
+        mistakesText.setText(String.valueOf(mistakes));
+
+        int correct = shared.getInt(APP_STATS_CORRECT, 0);
+        correctText.setText(String.valueOf(correct));
+
+        int whole = shared.getInt(APP_STATS_WHOLE, 0);
+        wholeCount.setText(String.valueOf(whole));
+
+        String bestT = shared.getString(APP_STATS_BEST, "0");
+        bestTime.setText(bestT);
+
+        String avgT = shared.getString(APP_STATS_AVG, "0");
+        avgTime.setText(avgT);
     }
 
     View.OnClickListener oclBackMain = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            SharedPreferences stats = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = stats.edit();
+            editor.putInt(APP_STATS_MISTAKES, 0);
+            editor.putInt(APP_STATS_CORRECT, 0);
+            editor.putInt(APP_STATS_WHOLE, 0);
+            editor.putString(APP_STATS_BEST, "0");
+            editor.putString(APP_STATS_AVG, "0");
+            editor.apply();
+
             Intent backToMain = new Intent(ResultActivity.this, MainActivity.class);
             startActivity(backToMain);
+        }
+    };
+
+    View.OnClickListener oclSingleStats = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent toStats = new Intent(ResultActivity.this, StatisticsActivity.class);
+            startActivity(toStats);
         }
     };
 }

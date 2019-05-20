@@ -25,6 +25,9 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/roundedrec" />
+
+        <activity android:name=".MultipleModeActivity" />
+        <activity android:name=".StatisticsActivity"></activity>
     </application>
 
 </manifest>

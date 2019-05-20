@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/window"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="5dp">
+
+
+        <TextView
+            android:id="@+id/level"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/roudedrec"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:singleLine="true"
+            android:text="@string/level_init"
+            android:textSize="35sp"
+            android:gravity="center|bottom"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="128dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_toEndOf="@+id/level"
+            android:layout_toRightOf="@+id/level"
+            android:background="@drawable/roudedrec"
+            android:scaleType="fitCenter"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="@string/choose_wrong"/>
+
+        <TextView
+            android:id="@+id/inARow"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toEndOf="@+id/question"
+            android:layout_toRightOf="@+id/question"
+            android:background="@drawable/roudedrec"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="@string/counter_init"
+            android:textSize="35sp"
+            android:gravity="center|bottom"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/bestText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/level"
+            android:layout_alignLeft="@+id/level"
+            android:layout_alignTop="@+id/level"
+            android:layout_alignEnd="@+id/level"
+            android:layout_alignRight="@+id/level"
+            android:layout_alignBottom="@+id/level"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="@string/level"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/levelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/inARow"
+            android:layout_alignLeft="@+id/inARow"
+            android:layout_alignTop="@+id/inARow"
+            android:layout_alignEnd="@+id/inARow"
+            android:layout_alignRight="@+id/inARow"
+            android:layout_alignBottom="@+id/inARow"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="@string/in_a_row"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/finishMultiple"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginRight="115dp"
+        android:background="@drawable/roudedrec"
+        android:text="@string/finish"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="25sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/word_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

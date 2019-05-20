@@ -6,54 +6,299 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="30dp"
-    android:orientation="horizontal"
-    android:background="@color/colorPrimaryDark">
-    <Button
-        android:id="@+id/back"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:textColor="@color/colorAccent"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center"
-        android:text="@string/back"
-        android:textStyle="normal"
-        android:textSize="12sp"  />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/settings"
-        android:paddingLeft="110dp"
-        android:textColor="@color/colorAccent"
-        android:textStyle="normal"/>
-</LinearLayout>
-
-    <Switch
-        android:id="@+id/egeSwitch"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="70dp"
-        android:background="@color/colorPrimary"
-        android:onClick="onClick"
-        android:paddingLeft="50dp"
-        android:text="@string/ege_mode"
-        android:textColor="@color/colorAccent"
-        android:textSize="15sp" />
+        android:layout_height="65dp"
+        android:layout_marginTop="5dp">
 
 
-    <Button
-        android:id="@+id/contact"
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/roudedrec"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:singleLine="true"
+            android:textSize="35sp"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:src="@drawable/back"
+            android:tint="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/settTextView"
+            android:layout_width="208dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@+id/back"
+            android:layout_toRightOf="@+id/back"
+            android:background="@drawable/roudedrec"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:singleLine="true"
+            android:text="@string/settings"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="200dp"
-        android:textColor="@color/colorAccent"
-        android:background="@color/colorPrimary"
-        android:text="@string/contact"
-        android:gravity="center"
-        android:textSize="15sp" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/forSwitch1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/roudedrec"
+            android:text="@string/ege_mode"
+            android:gravity="center_vertical|start"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="13sp"
+            android:paddingLeft="30dp"/>
+
+        <TextView
+            android:id="@+id/switchField1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/forSwitch1"
+            android:layout_alignLeft="@+id/forSwitch1"
+            android:layout_alignTop="@+id/forSwitch1"
+            android:layout_alignEnd="@+id/forSwitch1"
+            android:layout_alignRight="@+id/forSwitch1"
+            android:layout_alignBottom="@+id/forSwitch1"
+            android:layout_marginStart="250dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/roudedrec"
+            android:backgroundTint="@color/colorAccent"/>
+
+        <Switch
+            android:id="@+id/egeswitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/switchField1"
+            android:layout_alignLeft="@+id/switchField1"
+            android:layout_alignTop="@+id/switchField1"
+            android:layout_alignBottom="@+id/switchField1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:theme="@style/SwitchTheme"
+            android:thumbTint="@color/colorPrimaryDark"
+            android:trackTint="@color/colorPrimary"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/forSwitch2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/roudedrec"
+            android:text="@string/advertisement"
+            android:gravity="center_vertical|start"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="13sp"
+            android:paddingLeft="30dp"/>
+
+        <TextView
+            android:id="@+id/switchField2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/forSwitch2"
+            android:layout_alignLeft="@+id/forSwitch2"
+            android:layout_alignTop="@+id/forSwitch2"
+            android:layout_alignEnd="@+id/forSwitch2"
+            android:layout_alignRight="@+id/forSwitch2"
+            android:layout_alignBottom="@+id/forSwitch2"
+            android:layout_marginStart="250dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/roudedrec"
+            android:backgroundTint="@color/colorAccent"/>
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/switchField2"
+            android:layout_alignLeft="@+id/switchField2"
+            android:layout_alignTop="@+id/switchField2"
+            android:layout_alignBottom="@+id/switchField2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:theme="@style/SwitchTheme"
+            android:thumbTint="@color/colorPrimaryDark"
+            android:trackTint="@color/colorPrimary"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/developersField"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="210dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/roudedrec"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:singleLine="true"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/devText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/developersField"
+            android:layout_alignLeft="@+id/developersField"
+            android:layout_alignTop="@+id/developersField"
+            android:layout_alignEnd="@+id/developersField"
+            android:layout_alignRight="@+id/developersField"
+            android:layout_alignBottom="@+id/developersField"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="start|top"
+            android:text="@string/developersTitle"
+            android:textColor="@color/colorPrimary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dev1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/developersField"
+            android:layout_alignLeft="@+id/developersField"
+            android:layout_alignTop="@+id/devText"
+            android:layout_alignEnd="@+id/developersField"
+            android:layout_alignRight="@+id/developersField"
+            android:layout_alignBottom="@+id/developersField"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="start|top"
+            android:text="@string/dev1"
+            android:textColor="@color/colorAccent"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dev2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/developersField"
+            android:layout_alignLeft="@+id/developersField"
+            android:layout_alignTop="@+id/dev1"
+            android:layout_alignEnd="@+id/developersField"
+            android:layout_alignRight="@+id/developersField"
+            android:layout_alignBottom="@+id/developersField"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="start|top"
+            android:text="@string/dev2"
+            android:textColor="@color/colorAccent"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dev3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/developersField"
+            android:layout_alignLeft="@+id/developersField"
+            android:layout_alignTop="@+id/dev2"
+            android:layout_alignEnd="@+id/developersField"
+            android:layout_alignRight="@+id/developersField"
+            android:layout_alignBottom="@+id/developersField"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="start|top"
+            android:text="@string/dev3"
+            android:textColor="@color/colorAccent"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/rights"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/developersField"
+            android:layout_alignLeft="@+id/developersField"
+            android:layout_alignTop="@+id/developersField"
+            android:layout_alignEnd="@+id/developersField"
+            android:layout_alignRight="@+id/developersField"
+            android:layout_alignBottom="@+id/developersField"
+            android:layout_marginStart="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal|bottom"
+            android:text="@string/copyright"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
 
 </LinearLayout>
