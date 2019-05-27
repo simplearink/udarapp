@@ -39,6 +39,8 @@ public class CheckerModeActivity extends Activity {
     double bestTime = 60000;
     double wholeTime = 0;
 
+    SharedPreferences statistics;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,8 +144,17 @@ public class CheckerModeActivity extends Activity {
             editor.putInt(ResultActivity.APP_STATS_MISTAKES, counter - correctCounter);
             editor.putInt(ResultActivity.APP_STATS_CORRECT, correctCounter);
             editor.putInt(ResultActivity.APP_STATS_WHOLE, counter);
-            editor.putString(ResultActivity.APP_STATS_BEST, String.format("%.1f", bestTime / 1000));
-            editor.putString(ResultActivity.APP_STATS_AVG, String.format("%.1f", (wholeTime / correctCounter) / 1000));
+            double avg;
+            if (correctCounter == 0) {
+                avg = 0.0;
+                bestTime = 0.0;
+            } else {
+                avg = wholeTime / correctCounter / 1000;
+                bestTime = bestTime / 1000;
+            }
+            editor.putString(ResultActivity.APP_STATS_BEST, String.format("%.1f", bestTime));
+            editor.putString(ResultActivity.APP_STATS_AVG, String.format("%.1f", avg));
+            editor.putInt(ResultActivity.APP_MODE, 0);
             editor.apply();
             startActivity(result);
         }

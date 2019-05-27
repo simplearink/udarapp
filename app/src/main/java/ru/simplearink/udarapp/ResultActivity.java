@@ -25,6 +25,9 @@ public class ResultActivity extends Activity {
     public static final String APP_STATS_RES_WORD = "word";
     public static final String APP_STATS_RES_CORRECT = "correctAns";
     public static final String APP_STATS_RES_USERS = "usersAns";
+    public static final String APP_STATS_COR_WORD = "corWord";
+
+    public static final String APP_MODE = "mode";
 
     SharedPreferences statsPreferences;
 
@@ -93,7 +96,7 @@ public class ResultActivity extends Activity {
             SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = shared.edit();
             editor.clear();
-            editor.apply();
+            editor.commit();
             Intent backToMain = new Intent(ResultActivity.this, MainActivity.class);
             startActivity(backToMain);
         }

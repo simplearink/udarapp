@@ -9,6 +9,7 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -21,6 +22,7 @@ class ApiConnection extends AsyncTask<Void, Void, String[]> {
 
     int egeModeOn;
     int gameMode;
+
 
     public ApiConnection(boolean egeMode, int mode) { // mode: 0 - checker mode; 1 - selection mode
         if (egeMode) {

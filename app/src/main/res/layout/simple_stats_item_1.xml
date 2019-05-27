@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/stats_list_background"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roudedrec"
+        android:text="@string/quest"
+        android:gravity="center_vertical|start"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:paddingLeft="30dp"/>
+
+    <TextView
+        android:id="@+id/correctnessField"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignStart="@+id/stats_list_background"
+        android:layout_alignLeft="@+id/stats_list_background"
+        android:layout_alignTop="@+id/stats_list_background"
+        android:layout_alignEnd="@+id/stats_list_background"
+        android:layout_alignRight="@+id/stats_list_background"
+        android:layout_alignBottom="@+id/stats_list_background"
+        android:layout_marginStart="210dp"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="7dp"
+        android:text="@string/correct"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:background="@drawable/roudedrec"
+        android:backgroundTint="@color/colorAccent"/>
+</RelativeLayout>

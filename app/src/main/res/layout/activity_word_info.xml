@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/window"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C8FFFFFF"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp">
+
+        <TextView
+            android:id="@+id/statsSingleMore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/roudedrec" />
+
+        <TextView
+            android:id="@+id/questionWord"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/statsSingleMore"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="слОво"
+            android:textColor="@color/colorAccent"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_alignLeft="@+id/questionWord"
+            android:layout_below="@+id/questionWord"
+            android:layout_alignRight="@+id/questionWord"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="20dp"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:text="Ваш ответ"
+                android:textColor="#63FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/correctAnsColor"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/roudedrec"
+                android:backgroundTint="@color/correctAnswer"/>
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="Верный ответ"
+                android:textColor="#63FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/userAnsColor"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/roudedrec"
+                android:backgroundTint="@color/correctAnswer"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignStart="@+id/correctQuestionWord"
+            android:layout_alignLeft="@+id/correctQuestionWord"
+            android:layout_above="@+id/correctQuestionWord"
+            android:gravity="center"
+            android:text="Правильное ударение"
+            android:textColor="#63FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/correctQuestionWord"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/statsSingleMore"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:text="слОво"
+            android:textColor="@color/colorAccent"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+</RelativeLayout>
