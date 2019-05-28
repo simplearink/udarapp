@@ -2,14 +2,14 @@ package ru.simplearink.udarapp;
 
 import java.io.Serializable;;
 
-public class SingleResultObject implements Serializable {
+public class CheckerResultObject implements Serializable {
     private int iter;
     private int wordId;
     private String word;
     private String answer;
     private boolean userAnswer;
 
-    SingleResultObject(int newIter, int newWordId, String newWord, String newAnswer, boolean newUserAnswer) {
+    CheckerResultObject(int newIter, int newWordId, String newWord, String newAnswer, boolean newUserAnswer) {
         iter = newIter;
         wordId = newWordId;
         word = newWord;

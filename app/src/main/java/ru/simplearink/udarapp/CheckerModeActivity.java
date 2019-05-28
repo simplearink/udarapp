@@ -27,8 +27,8 @@ public class CheckerModeActivity extends Activity {
     private Button finishBtn;
     private TextView timerTextView;
 
-    private SingleGameController stats;
-    private SingleResultObject currentWordData;
+    private CheckerGameController stats;
+    private CheckerResultObject currentWordData;
 
     private boolean correctness;
     private boolean user;
@@ -38,8 +38,6 @@ public class CheckerModeActivity extends Activity {
     double startTime = 0;
     double bestTime = 60000;
     double wholeTime = 0;
-
-    SharedPreferences statistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +56,7 @@ public class CheckerModeActivity extends Activity {
         applicationView = findViewById(R.id.window);
         applicationView.setOnTouchListener(otlSwipe);
 
-        stats = new SingleGameController();
+        stats = new CheckerGameController();
 
         updateWord();
         timerTextView.setText("60");
@@ -163,10 +161,10 @@ public class CheckerModeActivity extends Activity {
     public void updateWord() {
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
-        connection = new ApiConnection(sharedPreferences.getBoolean(MainActivity.APP_PREFERENCES_EGE, false), 0);
+        connection = new ApiConnection(sharedPreferences.getBoolean(MainActivity.APP_PREFERENCES_EGE, false), 0, -1);
         connection.execute();
 
-        String[] res = null;
+        String[][] res = null;
         try {
             res = connection.get();
         } catch (ExecutionException e) {
@@ -176,10 +174,10 @@ public class CheckerModeActivity extends Activity {
         }
 
 
-        updateTextView.setText(res[0]);
-        correctness = correct(res[1]);
+        updateTextView.setText(res[0][0]);
+        correctness = correct(res[1][0]);
 
-        currentWordData = new SingleResultObject(0, Integer.parseInt(res[2]), res[0], res[1], true);
+        currentWordData = new CheckerResultObject(0, Integer.parseInt(res[2][0]), res[0][0], res[1][0], true);
         startTime = System.currentTimeMillis();
     }
 

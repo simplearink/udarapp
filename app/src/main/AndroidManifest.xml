@@ -27,7 +27,7 @@
             android:name="com.google.android.actions"
             android:resource="@xml/roundedrec" />
 
-        <activity android:name=".MultipleModeActivity" />
+        <activity android:name=".IncorrectChoiceModeActivity" />
         <activity android:name=".StatisticsActivity" />
     </application>
 

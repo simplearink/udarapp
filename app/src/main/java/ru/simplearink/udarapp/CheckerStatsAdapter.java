@@ -9,15 +9,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class StatsAdapter extends ArrayAdapter<SingleResultObject> {
-    public StatsAdapter(Context context, ArrayList<SingleResultObject> stats) {
+public class CheckerStatsAdapter extends ArrayAdapter<CheckerResultObject> {
+    public CheckerStatsAdapter(Context context, ArrayList<CheckerResultObject> stats) {
         super(context, 0, stats);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        SingleResultObject statsRes = getItem(position);
+        CheckerResultObject statsRes = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.simple_stats_item_1, parent, false);
@@ -26,7 +26,7 @@ public class StatsAdapter extends ArrayAdapter<SingleResultObject> {
         TextView questionNum = convertView.findViewById(R.id.stats_list_background);
         TextView correctness = convertView.findViewById(R.id.correctnessField);
         // Populate the data into the template view using the data object
-        questionNum.setText("Вопрос " + String.valueOf(statsRes.getIter()));
+        questionNum.setText("Вопрос " + statsRes.getIter());
 
         String str;
         if (String.valueOf(statsRes.getUserAnswer()).equals(statsRes.getAnswer())) {

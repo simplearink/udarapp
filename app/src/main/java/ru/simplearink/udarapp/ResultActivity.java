@@ -26,6 +26,7 @@ public class ResultActivity extends Activity {
     public static final String APP_STATS_RES_CORRECT = "correctAns";
     public static final String APP_STATS_RES_USERS = "usersAns";
     public static final String APP_STATS_COR_WORD = "corWord";
+    public static final String APP_STATS_QUEST_SIZE = "questionSize";
 
     public static final String APP_MODE = "mode";
 
@@ -55,22 +56,13 @@ public class ResultActivity extends Activity {
         backButton.setOnClickListener(oclBackMain);
 
         statsButton = findViewById(R.id.statsSingle);
-        statsButton.setOnClickListener(oclSingleStats);
+        statsButton.setOnClickListener(oclStats);
 
         mistakesText = findViewById(R.id.mistakesCounter);
         correctText = findViewById(R.id.correctCounter);
         wholeCount = findViewById(R.id.wholeSetSize);
         bestTime = findViewById(R.id.bestTime);
         avgTime = findViewById(R.id.avgTime);
-
-/*        intent = getIntent();
-
-        int size = intent.getIntExtra("size", 0);
-        for (int i = 0; i < size; i++) {
-            SingleResultObject res = (SingleResultObject) intent.getSerializableExtra("stats" + i);
-            str += (res.getWordId() + " " + res.getWord() +
-                    " " + res.getAnswer() + " " + res.getUserAnswer());
-        }*/
 
         SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
 
@@ -102,11 +94,17 @@ public class ResultActivity extends Activity {
         }
     };
 
-    View.OnClickListener oclSingleStats = new View.OnClickListener() {
+    View.OnClickListener oclStats = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent toStats = new Intent(ResultActivity.this, StatisticsActivity.class);
-            startActivity(toStats);
+            SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
+            if (shared.getInt(ResultActivity.APP_MODE, 0) == 0) {
+                Intent toStats = new Intent(ResultActivity.this, StatisticsActivity.class);
+                startActivity(toStats);
+            } else {
+//                Intent toStats = new Intent(MultipleResultActivity.this, StatisticsActivity.class);
+//                startActivity(toStats);
+            }
         }
     };
 }
