@@ -27,6 +27,8 @@ public class ResultActivity extends Activity {
     public static final String APP_STATS_RES_USERS = "usersAns";
     public static final String APP_STATS_COR_WORD = "corWord";
     public static final String APP_STATS_QUEST_SIZE = "questionSize";
+    public static final String APP_STATS_ANS_CORRECT = "isAnswerCorrect";
+    public static final String APP_STATS_RES_CORRECT_POSITION = "correctAnswerOnPosition";
 
     public static final String APP_MODE = "mode";
 
@@ -40,10 +42,6 @@ public class ResultActivity extends Activity {
     private TextView wholeCount;
     private TextView bestTime;
     private TextView avgTime;
-
-    private String str = "";
-
-    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +86,7 @@ public class ResultActivity extends Activity {
             SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = shared.edit();
             editor.clear();
-            editor.commit();
+            editor.apply();
             Intent backToMain = new Intent(ResultActivity.this, MainActivity.class);
             startActivity(backToMain);
         }
@@ -97,14 +95,9 @@ public class ResultActivity extends Activity {
     View.OnClickListener oclStats = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
-            if (shared.getInt(ResultActivity.APP_MODE, 0) == 0) {
-                Intent toStats = new Intent(ResultActivity.this, StatisticsActivity.class);
-                startActivity(toStats);
-            } else {
-//                Intent toStats = new Intent(MultipleResultActivity.this, StatisticsActivity.class);
-//                startActivity(toStats);
-            }
+            Intent toStats = new Intent(ResultActivity.this, StatisticsActivity.class);
+            startActivity(toStats);
+
         }
     };
 }

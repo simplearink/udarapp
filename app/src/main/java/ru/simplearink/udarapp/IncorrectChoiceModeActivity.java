@@ -19,8 +19,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import static ru.simplearink.udarapp.ResultActivity.APP_STATS_ANS_CORRECT;
+import static ru.simplearink.udarapp.ResultActivity.APP_STATS_CORRECT;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_QUEST_SIZE;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_CORRECT;
+import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_CORRECT_POSITION;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_ID;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_SIZE;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_USERS;
@@ -87,7 +90,9 @@ public class IncorrectChoiceModeActivity extends Activity {
                     editor.putString(APP_STATS_RES_WORD + "[" + i + "][" + j + "]", obj.getWord(j));
                     editor.putString(APP_STATS_RES_ID + "[" + i + "][" + j + "]", obj.getWordID(j));
                 }
-                editor.putString(APP_STATS_RES_USERS + i, obj.getUserAnswer());
+                editor.putInt(APP_STATS_RES_CORRECT_POSITION + i, obj.getAnswer());
+                editor.putInt(APP_STATS_RES_USERS + i, obj.getUserAnswer());
+                editor.putBoolean(APP_STATS_ANS_CORRECT + i, obj.isUserAnswerCorrect());
             }
             editor.apply();
 
@@ -132,7 +137,9 @@ public class IncorrectChoiceModeActivity extends Activity {
                 counter++;
                 inARowNow = 0;
             }
-            currentQuestion.setUserAnswer(ids.get(position));
+            currentQuestion.setCorrectness(correctness);
+            currentQuestion.setUserAnswer(position);
+
             if (inARowNow == currentLevel) {
                 inARowNow = 0;
                 currentLevel++;
@@ -158,11 +165,16 @@ public class IncorrectChoiceModeActivity extends Activity {
             e.printStackTrace();
         }
 
+        int correctPosition = -1;
+
         correctWordID = res[1][0];
         words = new ArrayList<>();
         ids = new ArrayList<>();
 
         for (int i = 0; i < level; i++) {
+            if (res[2][i].equals(res[1][0])) {
+                correctPosition = i;
+            }
             ids.add(res[2][i]);
             words.add(res[0][i].substring(1, res[0][i].length() - 1));
         }
@@ -172,7 +184,7 @@ public class IncorrectChoiceModeActivity extends Activity {
         listView.setOnItemClickListener(oclItem);
         listView.setAdapter(adapter);
 
-        currentQuestion = new IncorrectChoiceResultObject(currentLevel, ids, words, correctWordID, "0");
+        currentQuestion = new IncorrectChoiceResultObject(currentLevel, ids, words, correctPosition, -1, false);
         currentData.add(currentQuestion);
         startTime = System.currentTimeMillis();
     }

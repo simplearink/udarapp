@@ -144,7 +144,6 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         JsonArray jsonArray = (JsonArray) parser.parse(inline);
 
         JsonElement jsonObj = jsonArray.get(0);
-        System.out.println(jsonObj);
 
         if (jsonObj.isJsonObject()) {
             JsonObject jsonObject = jsonObj.getAsJsonObject();
@@ -158,10 +157,8 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
                 }
             }
             JsonElement ans = jsonObject.get("answer");
-            System.out.println(ans);
             JsonObject answer = ans.getAsJsonObject();
             wordsCorrectness[0] = String.valueOf(answer.get("word_id"));
-            System.out.println(answer.get("word_id"));
         }
 
     }

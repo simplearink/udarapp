@@ -8,6 +8,6 @@ public class WordInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_word_info);
+        setContentView(R.layout.checker_activity_word_info);
     }
 }

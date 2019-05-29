@@ -3,18 +3,33 @@ package ru.simplearink.udarapp;
 import java.util.ArrayList;
 
 public class IncorrectChoiceResultObject {
-    private String answer;
-    private String userAnswer;
+    private int answer;
+    private int userAnswer;
     private ArrayList<String> wordsIDs;
     private ArrayList<String> words;
     private int size;
+    boolean correctness;
 
-    IncorrectChoiceResultObject(int questionSize, ArrayList<String> newWordIds, ArrayList<String> newWords, String newAnswer, String newUserAnswer) {
+    private String statsWord = "";
+
+    IncorrectChoiceResultObject(int questionSize, ArrayList<String> newWordIds, ArrayList<String> newWords, int answerPos, int userPos, boolean correct) {
         size = questionSize;
         wordsIDs = newWordIds;
         words = newWords;
-        answer = newAnswer;
-        userAnswer = newUserAnswer;
+        answer = answerPos;
+        userAnswer = userPos;
+        correctness = correct;
+    }
+
+    IncorrectChoiceResultObject(String word, int correctPosition, int userPosition) {
+        statsWord = word;
+        answer = correctPosition;
+        userAnswer = userPosition;
+        if (answer == userAnswer) {
+            correctness = true;
+        } else {
+            correctness = false;
+        }
     }
 
 
@@ -38,20 +53,27 @@ public class IncorrectChoiceResultObject {
         return size;
     }
 
-    public String getAnswer() {
+    public int getAnswer() {
         return answer;
     }
 
-    public String getUserAnswer() {
+    public int getUserAnswer() {
         return userAnswer;
     }
 
     public boolean isUserAnswerCorrect() {
-        if (answer.equals(userAnswer)) return true;
-        else return false;
+        return correctness;
     }
 
-    public void setUserAnswer(String wordID) {
-        userAnswer = wordID;
+    public void setUserAnswer(int wordPos) {
+        userAnswer = wordPos;
+    }
+
+    public void setCorrectness(boolean cor) {
+        correctness = cor;
+    }
+
+    public String getStatsWord() {
+        return statsWord;
     }
 }
