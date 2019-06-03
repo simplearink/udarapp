@@ -16,21 +16,23 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginRight="165dp"
         android:layout_marginLeft="165dp"
         android:background="@drawable/roudedrec"
         android:scaleType="fitCenter"
         android:paddingRight="5dp"
         android:paddingLeft="5dp"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:contentDescription="@string/settings"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="165dp"
         android:src="@drawable/logo"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"/>
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/app_name"/>
 
     <Button
         android:id="@+id/buttonSingleMode"
@@ -57,13 +59,10 @@
             android:id="@+id/dot1"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/dot"
-            android:paddingLeft="50dp"
             android:scaleType="fitCenter"
             android:singleLine="true"
             android:layout_alignParentStart="true"
@@ -78,7 +77,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="80dp"
-            android:layout_marginRight="80dp"
             android:background="@drawable/dot"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"

@@ -11,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
@@ -34,7 +32,7 @@
             android:layout_alignTop="@+id/statsSingleMore"
             android:layout_marginTop="12dp"
             android:gravity="center"
-            android:text="слОво"
+            android:text="@string/slOvo"
             android:textColor="@color/colorAccent"
             android:textSize="40sp"
             android:textStyle="bold" />
@@ -42,9 +40,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:layout_alignLeft="@+id/questionWord"
             android:layout_below="@+id/questionWord"
-            android:layout_alignRight="@+id/questionWord"
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
@@ -56,7 +52,7 @@
                 android:layout_height="20dp"
                 android:layout_alignParentTop="true"
                 android:gravity="center"
-                android:text="Ваш ответ"
+                android:text="@string/your_answer"
                 android:textColor="#63FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -74,9 +70,8 @@
                 android:layout_height="20dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="Верный ответ"
+                android:text="@string/correct_answer"
                 android:textColor="#63FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -86,7 +81,6 @@
                 android:layout_width="110dp"
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/roudedrec"
                 android:backgroundTint="@color/correctAnswer"/>
@@ -97,10 +91,9 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_alignStart="@+id/correctQuestionWord"
-            android:layout_alignLeft="@+id/correctQuestionWord"
             android:layout_above="@+id/correctQuestionWord"
             android:gravity="center"
-            android:text="Правильное ударение"
+            android:text="@string/correct_accent"
             android:textColor="#63FFFFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -112,7 +105,7 @@
             android:layout_alignBottom="@+id/statsSingleMore"
             android:layout_marginBottom="12dp"
             android:gravity="center"
-            android:text="слОво"
+            android:text="@string/slOvo"
             android:textColor="@color/colorAccent"
             android:textSize="40sp"
             android:textStyle="bold" />

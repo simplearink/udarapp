@@ -19,7 +19,7 @@
         android:background="@drawable/roudedrec"
         android:gravity="center"
         android:textColor="@color/colorAccent"
-        android:text="слОво"
+        android:text="@string/slOvo"
         android:textSize="40sp"/>
 
 </LinearLayout>

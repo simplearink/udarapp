@@ -29,4 +29,8 @@
     <string name="bestTime">Лучшее время</string>
     <string name="quest">Вопрос 1</string>
     <string name="correct">Верно</string>
+    <string name="slOvo">слОво</string>
+    <string name="your_answer">Ваш ответ</string>
+    <string name="correct_answer">Верный ответ</string>
+    <string name="correct_accent">Правильное ударение</string>
 </resources>

@@ -19,7 +19,7 @@
         android:background="@drawable/white_roundrec"
         android:gravity="center"
         android:textColor="@color/colorPrimaryDark"
-        android:text="слОво"
+        android:text="@string/slOvo"
         android:textStyle="bold"
         android:textSize="30sp"/>
 
