@@ -183,7 +183,7 @@ public class StatisticsActivity extends Activity {
         } else {
             inflater = (LayoutInflater) StatisticsActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             layout = inflater.inflate(R.layout.choice_activity_word_info, null);
-            ArrayList<String> statWords = new ArrayList<>();
+            ArrayList<IncorrectChoiceResultObject> statWords = new ArrayList<>();
 
             multipleAdapter = new MultipleModeAdapter(this, statWords);
             ListView statListView = layout.findViewById(R.id.statsChoiceList);
@@ -195,8 +195,9 @@ public class StatisticsActivity extends Activity {
             int userAnsPos = shared.getInt(APP_STATS_RES_USERS + position, -1);
             for (int i = 0; i < size; i++) {
                 String word = shared.getString(APP_STATS_RES_WORD + "[" + position + "][" + i + "]", null);
-                statWords.add(word);
+                statWords.add(new IncorrectChoiceResultObject(word, correctPos, userAnsPos));
             }
+
         }
 
 
@@ -216,6 +217,7 @@ public class StatisticsActivity extends Activity {
         pw.setOutsideTouchable(true);
         pw.setFocusable(true);
         // display the pop-up in the center
+        //pw.setAnimationStyle(1);
         pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
 
     }
