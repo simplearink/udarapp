@@ -106,8 +106,8 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         while (sc.hasNext()) {
             inline += sc.nextLine();
         }
-        System.out.println("\nJSON Response in String format");
-        System.out.println(inline);
+//        System.out.println("\nJSON Response in String format");
+//        System.out.println(inline);
         sc.close();
 
         JsonParser parser = new JsonParser();
@@ -118,10 +118,11 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
 
         if (jsonObj.isJsonObject()) {
             JsonObject jsonObject = jsonObj.getAsJsonObject();
-            System.out.println(jsonObject.get("word"));
             word = jsonObject.get("word").toString().replace("\"", "");
             correctness = jsonObject.get("answer").toString();
             wordID = jsonObject.get("word_id").toString();
+            System.out.println("CHECK THIS!");
+            System.out.println(wordID + " " + word);
         }
     }
 
@@ -135,8 +136,8 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         while (sc.hasNext()) {
             inline += sc.nextLine();
         }
-        System.out.println("\nJSON Response in String format");
-        System.out.println(inline);
+//        System.out.println("\nJSON Response in String format");
+//        System.out.println(inline);
         sc.close();
 
         JsonParser parser = new JsonParser();
@@ -154,6 +155,8 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
                     JsonObject jsonOb = jsonElem.getAsJsonObject();
                     wordsIDs[i] = jsonOb.get("word_id").toString();
                     words[i] = jsonOb.get("word").toString();
+                    System.out.println("CHECK THIS!");
+                    System.out.println(wordsIDs[i] + " " + words[i]);
                 }
             }
             JsonElement ans = jsonObject.get("answer");

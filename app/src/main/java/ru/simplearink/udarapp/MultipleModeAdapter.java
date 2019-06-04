@@ -31,8 +31,10 @@ public class MultipleModeAdapter extends ArrayAdapter<IncorrectChoiceResultObjec
         TextView word = convertView.findViewById(R.id.multiple_mode_stats_word);
         if (position == question.getAnswer()) {
             word.setBackgroundTintList(convertView.getResources().getColorStateList(R.color.correctAnswer));
-        } else if (position == question.getUserAnswer()) {
+        } else if (position == question.getUserAnswer() && !question.isUserAnswerCorrect()) {
             word.setBackgroundTintList(convertView.getResources().getColorStateList(R.color.wrongAnswer));
+        } else {
+            word.setBackgroundTintList(convertView.getResources().getColorStateList(R.color.colorAccent));
         }
         word.setText(question.getStatsWord());
 

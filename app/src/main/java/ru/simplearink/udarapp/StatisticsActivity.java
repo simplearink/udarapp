@@ -90,7 +90,7 @@ public class StatisticsActivity extends Activity {
                 int cor = shared.getInt(APP_STATS_RES_CORRECT_POSITION + i, -1);
                 int users = shared.getInt(APP_STATS_RES_USERS + i, -1);
 
-                System.out.println(cor + " vs " + users);
+//                System.out.println(cor + " vs " + users);
 
                 Boolean userCorrectness = shared.getBoolean(APP_STATS_ANS_CORRECT + i, false);
                 array.add(new IncorrectChoiceResultObject(questionSize, ids, words, cor, users, userCorrectness));
@@ -136,7 +136,7 @@ public class StatisticsActivity extends Activity {
 
                 showStats(position, mode);
 
-                System.out.println("Word = " + word + "; Correct word = " + res + "; Correct answer = " + cor + "; User's answer = " + users);
+//                System.out.println("Word = " + word + "; Correct word = " + res + "; Correct answer = " + cor + "; User's answer = " + users);
             } else if (mode == 1) {
                 showStats(position, mode);
             }
@@ -177,8 +177,8 @@ public class StatisticsActivity extends Activity {
                 (layout.findViewById(R.id.userAnsColor)).setBackgroundTintList(contextInstance.getResources().getColorStateList(R.color.wrongAnswer));
             }
 
-            System.out.println(cor);
-            System.out.println(users);
+//            System.out.println(cor);
+//            System.out.println(users);
 
         } else {
             inflater = (LayoutInflater) StatisticsActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

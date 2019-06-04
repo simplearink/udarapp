@@ -68,7 +68,7 @@ public class CorrectWordExtractor extends AsyncTask<Void, Void, String> {
 
             if (jsonObj.isJsonObject()) {
                 JsonObject jsonObject = jsonObj.getAsJsonObject();
-                System.out.println(jsonObject.get("word"));
+//                System.out.println(jsonObject.get("word"));
                 word = jsonObject.get("word").toString().replace("\"", "");
             }
             conn.disconnect();

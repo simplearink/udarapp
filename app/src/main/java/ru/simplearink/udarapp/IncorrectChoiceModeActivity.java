@@ -172,7 +172,7 @@ public class IncorrectChoiceModeActivity extends Activity {
         ids = new ArrayList<>();
 
         for (int i = 0; i < level; i++) {
-            if (res[2][i].equals(res[1][0])) {
+            if (res[2][i].equals(correctWordID)) {
                 correctPosition = i;
             }
             ids.add(res[2][i]);

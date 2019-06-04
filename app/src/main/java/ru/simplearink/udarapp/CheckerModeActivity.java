@@ -131,8 +131,8 @@ public class CheckerModeActivity extends Activity {
             editor.putInt(ResultActivity.APP_STATS_RES_SIZE, stats.size());
             editor.apply();
             for (int i = 0; i < stats.size(); i++) {
-                System.out.println(stats.get(i).getWordId() + " " + stats.get(i).getWord() +
-                        " " + stats.get(i).getAnswer() + " " + stats.get(i).getUserAnswer());
+//                System.out.println(stats.get(i).getWordId() + " " + stats.get(i).getWord() +
+//                        " " + stats.get(i).getAnswer() + " " + stats.get(i).getUserAnswer());
                 editor.putInt(ResultActivity.APP_STATS_RES_ID + i, stats.get(i).getWordId());
                 editor.putString(ResultActivity.APP_STATS_RES_WORD + i, stats.get(i).getWord());
                 editor.putString(ResultActivity.APP_STATS_RES_CORRECT + i, stats.get(i).getAnswer());

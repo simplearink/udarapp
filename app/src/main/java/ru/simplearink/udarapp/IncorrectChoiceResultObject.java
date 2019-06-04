@@ -3,8 +3,8 @@ package ru.simplearink.udarapp;
 import java.util.ArrayList;
 
 public class IncorrectChoiceResultObject {
-    private int answer;
-    private int userAnswer;
+    private int answer = -1;
+    private int userAnswer = -1;
     private ArrayList<String> wordsIDs;
     private ArrayList<String> words;
     private int size;
