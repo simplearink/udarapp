@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/window"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,6 +29,9 @@
         <TextView
             android:id="@+id/questionWord"
             android:layout_width="match_parent"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            app:autoSizeTextType="uniform"
             android:layout_height="50dp"
             android:layout_alignTop="@+id/statsSingleMore"
             android:layout_marginTop="12dp"
@@ -102,6 +106,9 @@
             android:id="@+id/correctQuestionWord"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            app:autoSizeTextType="uniform"
             android:layout_alignBottom="@+id/statsSingleMore"
             android:layout_marginBottom="12dp"
             android:gravity="center"

@@ -2,6 +2,7 @@
 
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -21,6 +22,7 @@
         android:textColor="@color/colorPrimaryDark"
         android:text="@string/slOvo"
         android:textStyle="bold"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        app:autoSizeTextType="uniform"/>
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -8,9 +9,11 @@
     <TextView
         android:id="@+id/multiple_mode_word"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
@@ -20,6 +23,7 @@
         android:gravity="center"
         android:textColor="@color/colorAccent"
         android:text="@string/slOvo"
-        android:textSize="40sp"/>
+        android:textSize="40sp"
+        app:autoSizeTextType="uniform"/>
 
 </LinearLayout>

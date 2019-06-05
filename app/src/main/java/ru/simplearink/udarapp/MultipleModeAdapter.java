@@ -36,6 +36,7 @@ public class MultipleModeAdapter extends ArrayAdapter<IncorrectChoiceResultObjec
         } else {
             word.setBackgroundTintList(convertView.getResources().getColorStateList(R.color.colorAccent));
         }
+
         word.setText(question.getStatsWord());
 
 

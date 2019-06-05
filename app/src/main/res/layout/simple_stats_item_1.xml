@@ -38,5 +38,5 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:background="@drawable/roudedrec"
-        android:backgroundTint="@color/colorAccent"/>
+        android:backgroundTint="@color/colorAccent" />
 </RelativeLayout>

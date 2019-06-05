@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/window"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    android:orientation="vertical"
-    android:gravity="center_vertical">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/settTextView"
+        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
+        app:layout_marginTopPercent="7%"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginBottom="10dp"
@@ -30,10 +30,12 @@
         android:textSize="40sp"
         android:textStyle="bold" />
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/firstRow"
+        android:layout_below="@id/settTextView"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="50dp"
+        app:layout_marginTopPercent="7%"
         android:gravity="center">
 
 
@@ -151,11 +153,13 @@
             android:textStyle="bold" />
 
 
-    </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/timeRow"
+        android:layout_above="@id/statsSingle"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="20dp"
         android:gravity="center">
@@ -184,6 +188,7 @@
             android:layout_marginStart="70dp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/bestTime"
+            app:layout_marginLeftPercent="20%"
             android:background="@drawable/roudedrec"
             android:gravity="center|bottom"
             android:paddingLeft="5dp"
@@ -202,11 +207,6 @@
             android:layout_alignTop="@+id/bestTime"
             android:layout_alignEnd="@+id/bestTime"
             android:layout_alignBottom="@+id/bestTime"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
             android:layout_marginBottom="30dp"
             android:gravity="center"
             android:text="@string/bestTime"
@@ -235,17 +235,16 @@
             android:textStyle="bold" />
 
 
-    </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
 
     <Button
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/toMainButton"
+        app:layout_marginBottomPercent="3%"
         android:id="@+id/statsSingle"
-        android:layout_width="match_parent"
+        app:layout_widthPercent="55%"
         android:layout_height="60dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginLeft="115dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginRight="115dp"
         android:background="@drawable/roudedrec"
         android:backgroundTint="@color/colorPrimary"
         android:text="@string/stats"
@@ -255,13 +254,11 @@
 
     <Button
         android:id="@+id/toMainButton"
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:layout_marginBottomPercent="10%"
+        app:layout_widthPercent="55%"
         android:layout_height="60dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginLeft="115dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginRight="115dp"
         android:background="@drawable/roudedrec"
         android:backgroundTint="@color/colorPrimary"
         android:text="@string/finish"
@@ -270,4 +267,4 @@
         android:textSize="25sp" />
 
 
-</LinearLayout>
+</android.support.percent.PercentRelativeLayout>

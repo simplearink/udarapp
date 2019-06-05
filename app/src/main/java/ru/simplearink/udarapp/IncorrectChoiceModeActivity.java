@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -29,7 +30,7 @@ import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_SIZE;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_USERS;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_WORD;
 
-public class IncorrectChoiceModeActivity extends Activity {
+public class IncorrectChoiceModeActivity extends AppCompatActivity {
 
     private ApiConnection connection;
     private IncorrectChoiceGameController currentData;

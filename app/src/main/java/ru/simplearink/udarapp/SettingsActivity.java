@@ -6,12 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
 
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends AppCompatActivity {
     private ImageButton backButton;
     private Switch egeSwitch;
 

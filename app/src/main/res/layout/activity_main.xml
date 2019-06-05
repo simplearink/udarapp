@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/window"
     android:background="@color/colorAccent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_vertical">
+    android:orientation="vertical">
 
     <ImageButton
         android:id="@+id/settings"
@@ -15,8 +14,8 @@
         android:tint="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center_horizontal"
+        app:layout_marginTopPercent="10%"
+        android:layout_centerHorizontal="true"
         android:layout_marginRight="165dp"
         android:layout_marginLeft="165dp"
         android:background="@drawable/roudedrec"
@@ -27,29 +26,31 @@
         android:contentDescription="@string/settings"/>
 
     <ImageView
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="165dp"
+        android:id="@+id/logo"
+        app:layout_heightPercent="35%"
         android:src="@drawable/logo"
-        android:layout_marginTop="70dp"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="@string/app_name"/>
+        android:layout_alignParentTop="true"
+        app:layout_marginTopPercent="25%"
+        android:contentDescription="@string/app_name" />
 
     <Button
         android:id="@+id/buttonSingleMode"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/logo"
         android:textAllCaps="false"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="50dp"
+        app:layout_widthPercent="80%"
+        app:layout_heightPercent="9%"
+        app:layout_marginTopPercent="5%"
         android:text="@string/single_game_mode"
         android:textSize="25sp"
         android:textColor="@color/colorAccent"
         android:background="@drawable/roudedrec" />
 
     <RelativeLayout
+        android:id="@+id/dots"
+        android:layout_below="@id/buttonSingleMode"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_marginTop="5dp"
@@ -65,8 +66,7 @@
             android:background="@drawable/dot"
             android:scaleType="fitCenter"
             android:singleLine="true"
-            android:layout_alignParentStart="true"
-            android:paddingStart="50dp" />
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/dot2"
@@ -74,7 +74,6 @@
             android:layout_height="15dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="80dp"
             android:background="@drawable/dot"
@@ -86,16 +85,14 @@
 
     <Button
         android:id="@+id/buttonMultipleMode"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/dots"
         android:textAllCaps="false"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginEnd="50dp"
+        app:layout_widthPercent="80%"
+        app:layout_heightPercent="9%"
         android:text="@string/multiple_game_mode"
         android:textSize="25sp"
         android:textColor="@color/colorAccent"
         android:background="@drawable/roudedrec" />
 
-</LinearLayout>
+</android.support.percent.PercentRelativeLayout>

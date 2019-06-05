@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/window"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_vertical">
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        app:layout_marginTopPercent="10%"
         android:layout_height="65dp"
-        android:layout_marginTop="5dp"
         android:gravity="center_horizontal">
 
 
@@ -18,7 +19,6 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="5dp"
             android:background="@drawable/roudedrec"
             android:padding="5dp"
             android:scaleType="fitCenter"
@@ -52,7 +52,6 @@
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
             android:layout_marginStart="73dp"
-            android:layout_marginEnd="5dp"
             android:layout_toEndOf="@+id/time"
             android:background="@drawable/roudedrec"
             android:padding="5dp"
@@ -103,64 +102,68 @@
             android:textSize="12sp"
             android:textStyle="bold" />
 
-    </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
 
     <TextView
         android:id="@+id/textView"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        app:autoSizeTextType="uniform"
         android:layout_width="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="70dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="160dp"
+        app:layout_marginTopPercent="40%"
         android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
         android:background="@drawable/roudedrec"
         android:gravity="center"
         android:textColor="@color/colorAccent"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:text="@string/loading"/>
 
     <TextView
         android:id="@+id/dot1"
-        android:layout_gravity="center_horizontal"
+        android:layout_below="@id/textView"
+        android:layout_centerHorizontal="true"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_marginTop="30dp"
+        app:layout_marginTopPercent="5%"
         android:background="@drawable/dot"
         android:scaleType="fitCenter"
         android:singleLine="true" />
 
     <TextView
         android:id="@+id/dot2"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/dot1"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_marginTop="30dp"
+        app:layout_marginTopPercent="5%"
         android:background="@drawable/dot"
-        android:paddingStart="50dp"
         android:scaleType="fitCenter"
         android:singleLine="true" />
 
     <TextView
         android:id="@+id/dot3"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/dot2"
         android:layout_width="15dp"
         android:layout_height="15dp"
-        android:layout_marginTop="30dp"
+        app:layout_marginTopPercent="5%"
         android:background="@drawable/dot"
-        android:paddingStart="50dp"
         android:scaleType="fitCenter"
         android:singleLine="true" />
 
     <Button
         android:layout_gravity="center_horizontal"
         android:id="@+id/finishSingle"
+        android:layout_below="@id/dot3"
         android:textAllCaps="false"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        app:layout_marginTopPercent="5%"
         android:layout_marginLeft="115dp"
         android:layout_marginStart="115dp"
         android:layout_marginRight="115dp"
@@ -170,4 +173,4 @@
         android:textColor="@color/colorAccent"
         android:background="@drawable/roudedrec" />
 
-</LinearLayout>
+</android.support.percent.PercentRelativeLayout>

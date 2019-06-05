@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/window"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_vertical">
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/back_and_sett"
+        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginTop="5dp">
+        app:layout_marginTopPercent="3%">
 
 
         <ImageButton
@@ -19,7 +21,7 @@
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="25dp"
+            app:layout_marginLeftPercent="4%"
             android:background="@drawable/roudedrec"
             android:backgroundTint="@color/colorPrimary"
             android:gravity="center"
@@ -37,7 +39,7 @@
             android:id="@+id/settTextView"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -56,12 +58,15 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-    </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
+        android:layout_below="@id/back_and_sett"
+        android:id="@+id/egeSwitchField"
+        app:layout_marginTopPercent="1%"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/forSwitch1"
@@ -99,24 +104,22 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/switchField1"
             android:layout_alignTop="@+id/switchField1"
+            android:layout_alignEnd="@id/switchField1"
             android:layout_alignBottom="@+id/switchField1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
             android:theme="@style/SwitchTheme"
             android:thumbTint="@color/colorPrimaryDark"
-            android:trackTint="@color/colorPrimary"/>
+            android:trackTint="@color/colorPrimary"
+            app:layout_marginLeftPercent="1%"
+            app:layout_marginRightPercent="3%" />
 
-    </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/adsSwitchField"
+        android:layout_below="@id/egeSwitchField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        app:layout_marginTopPercent="3%">
 
         <TextView
             android:id="@+id/forSwitch2"
@@ -151,26 +154,23 @@
             android:id="@+id/switch2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/switchField2"
+            android:layout_alignRight="@+id/switchField2"
             android:layout_alignTop="@+id/switchField2"
             android:layout_alignBottom="@+id/switchField2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
             android:theme="@style/SwitchTheme"
             android:thumbTint="@color/colorPrimaryDark"
-            android:trackTint="@color/colorPrimary"/>
+            android:trackTint="@color/colorPrimary"
+            app:layout_marginLeftPercent="1%"
+            app:layout_marginRightPercent="3%"/>
 
 
-    </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_marginBottomPercent="3%">
 
         <TextView
             android:id="@+id/developersField"
@@ -278,7 +278,7 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-    </RelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
 
 
-</LinearLayout>
+</android.support.percent.PercentRelativeLayout>

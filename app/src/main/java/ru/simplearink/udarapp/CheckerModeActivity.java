@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.RequiresApi;
+import android.support.v4.widget.TextViewCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +20,7 @@ import android.widget.TextView;
 
 import java.util.concurrent.ExecutionException;
 
-public class CheckerModeActivity extends Activity {
+public class CheckerModeActivity extends AppCompatActivity {
     private TextView updateTextView;
     private View applicationView;
     private ApiConnection connection;
@@ -50,6 +52,8 @@ public class CheckerModeActivity extends Activity {
         finishBtn.setOnClickListener(oclFinishBtn);
 
         updateTextView = findViewById(R.id.textView);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(updateTextView, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+
         mistakesCounter = findViewById(R.id.counterChecker);
         rightCounter = findViewById(R.id.sameCounterChecker);
 
@@ -173,8 +177,17 @@ public class CheckerModeActivity extends Activity {
             e.printStackTrace();
         }
 
+        String currentWord = res[0][0];
+        if (currentWord.length() >= 18) {
+            updateTextView.setTextSize(29);
+        } else if (currentWord.length() >= 15) {
+            updateTextView.setTextSize(33);
+        } else {
+            updateTextView.setTextSize(40);
+        }
 
-        updateTextView.setText(res[0][0]);
+
+        updateTextView.setText(currentWord);
         correctness = correct(res[1][0]);
 
         currentWordData = new CheckerResultObject(0, Integer.parseInt(res[2][0]), res[0][0], res[1][0], true);

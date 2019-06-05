@@ -1,6 +1,7 @@
 package ru.simplearink.udarapp;
 
 import android.content.Context;
+import android.support.v4.widget.TextViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,14 @@ public class IncorrectChoiceModeAdapter extends ArrayAdapter<String> {
         }
         // Lookup view for data population
         TextView word = convertView.findViewById(R.id.multiple_mode_word);
+
+        if (question.length() >= 18) {
+            word.setTextSize(29);
+        } else if (question.length() >= 15) {
+            word.setTextSize(33);
+        } else {
+            word.setTextSize(40);
+        }
         word.setText(question);
 
         return convertView;

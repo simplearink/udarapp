@@ -33,4 +33,5 @@
     <string name="your_answer">Ваш ответ</string>
     <string name="correct_answer">Верный ответ</string>
     <string name="correct_accent">Правильное ударение</string>
+    <string name="loading">Загрузка...</string>
 </resources>
