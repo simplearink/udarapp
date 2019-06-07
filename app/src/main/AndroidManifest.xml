@@ -29,6 +29,11 @@
 
         <activity android:name=".IncorrectChoiceModeActivity" />
         <activity android:name=".StatisticsActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/appID"/>
+
     </application>
 
 </manifest>

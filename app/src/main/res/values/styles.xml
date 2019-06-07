@@ -7,6 +7,7 @@
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
     <item name="buttonStyle">@style/NotCapsButton</item>
+    <item name="android:fontFamily">@font/raleway</item>
 </style>
 
     <style name="NotCapsButton" parent="Widget.AppCompat.Button">
@@ -17,5 +18,8 @@
         <item name="android:colorControlActivated">@color/colorPrimary</item>
     </style>
 
+    <style name="Animation">
+        <item name="android:windowEnterAnimation">@anim/up_animation</item>
+    </style>
 </resources>
 

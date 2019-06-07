@@ -4,13 +4,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -32,7 +38,7 @@ import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_SIZE;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_USERS;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_WORD;
 
-public class StatisticsActivity extends Activity {
+public class StatisticsActivity extends AppCompatActivity {
 
     private ImageButton backButton;
     private CheckerStatsAdapter checkerAdapter;
@@ -44,7 +50,6 @@ public class StatisticsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
@@ -132,7 +137,7 @@ public class StatisticsActivity extends Activity {
 
                 SharedPreferences.Editor editor = shared.edit();
                 editor.putString(APP_STATS_COR_WORD + position, res);
-                editor.commit();
+                editor.apply();
 
                 showStats(position, mode);
 
@@ -149,7 +154,7 @@ public class StatisticsActivity extends Activity {
 
         LayoutInflater inflater;
         View layout;
-
+        final PopupWindow pw;
 
         if (appMode == 0) {
             String word = shared.getString(APP_STATS_RES_WORD + position, null);
@@ -177,8 +182,14 @@ public class StatisticsActivity extends Activity {
                 (layout.findViewById(R.id.userAnsColor)).setBackgroundTintList(contextInstance.getResources().getColorStateList(R.color.wrongAnswer));
             }
 
-//            System.out.println(cor);
-//            System.out.println(users);
+            float dip = 240f;
+            Resources r = getResources();
+            float px = TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    dip,
+                    r.getDisplayMetrics()
+            );
+            //pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, (int)px, true);
 
         } else {
             inflater = (LayoutInflater) StatisticsActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -197,14 +208,14 @@ public class StatisticsActivity extends Activity {
                 String word = shared.getString(APP_STATS_RES_WORD + "[" + position + "][" + i + "]", null);
                 statWords.add(new IncorrectChoiceResultObject(word, correctPos, userAnsPos));
             }
-
+            //pw = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         }
-
 
         int height = StatisticsActivity.this.getResources().getDisplayMetrics().heightPixels;
         int width = StatisticsActivity.this.getResources().getDisplayMetrics().widthPixels;
-        // create a focusable PopupWindow with the given layout and correct size
-        final PopupWindow pw = new PopupWindow(layout, width, height);
+
+        pw = new PopupWindow(layout, width, height, true);
+
         pw.setTouchable(true);
 
         pw.getContentView().setOnClickListener(new View.OnClickListener() {
@@ -217,8 +228,8 @@ public class StatisticsActivity extends Activity {
         pw.setOutsideTouchable(true);
         pw.setFocusable(true);
         // display the pop-up in the center
-        //pw.setAnimationStyle(1);
-        pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
+        pw.setAnimationStyle(R.style.Animation);
+        pw.showAtLocation(layout, Gravity.BOTTOM, 0, 0);
 
     }
 }

@@ -17,6 +17,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -44,6 +50,7 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
     private TextView level;
     private TextView inARow;
     private View applicationView;
+    private AdView mAdView;
 
     int currentLevel = 3;
     int inARowNow = 0;
@@ -53,11 +60,23 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
     double startTime = 0;
     double bestTime = 60000;
     double wholeTime = 0;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiple_mode);
+
+        MobileAds.initialize(this, this.getResources().getString(R.string.appID));
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(this.getResources().getString(R.string.appInterstitalID));
+
+        mInterstitialAd.setAdListener(mInterstitialAdListener);
 
         finishGame = findViewById(R.id.finishMultiple);
         finishGame.setOnClickListener(finishGameocl);
@@ -72,9 +91,23 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
         updateWord(currentLevel);
     }
 
+    AdListener mInterstitialAdListener = new AdListener() {
+        @Override
+        public void onAdLoaded() {
+            mInterstitialAd.show();
+        }
+
+        @Override
+        public void onAdFailedToLoad(int errorCode) {
+           mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        }
+    };
+
     View.OnClickListener finishGameocl = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            mInterstitialAd.show();
             Intent result = new Intent(IncorrectChoiceModeActivity.this, ResultActivity.class);
 
             SharedPreferences statistics = getSharedPreferences(ResultActivity.APP_STATS, Context.MODE_PRIVATE);

@@ -80,7 +80,7 @@
             android:gravity="center_vertical|start"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:paddingLeft="30dp"/>
 
         <TextView
@@ -96,26 +96,27 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/roudedrec"
-            android:backgroundTint="@color/colorAccent"/>
+            android:backgroundTint="@color/colorAccent">
+
+        </TextView>
 
         <Switch
             android:id="@+id/egeswitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/switchField1"
             android:layout_alignTop="@+id/switchField1"
             android:layout_alignEnd="@id/switchField1"
             android:layout_alignBottom="@+id/switchField1"
             android:theme="@style/SwitchTheme"
             android:thumbTint="@color/colorPrimaryDark"
             android:trackTint="@color/colorPrimary"
-            app:layout_marginLeftPercent="1%"
-            app:layout_marginRightPercent="3%" />
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginRightPercent="5%" />
 
     </android.support.percent.PercentRelativeLayout>
 
     <android.support.percent.PercentRelativeLayout
-        android:id="@+id/adsSwitchField"
+        android:id="@+id/InstrSwitchField"
         android:layout_below="@id/egeSwitchField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -128,11 +129,11 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:background="@drawable/roudedrec"
-            android:text="@string/advertisement"
+            android:text="@string/instructions"
             android:gravity="center_vertical|start"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:paddingLeft="30dp"/>
 
         <TextView
@@ -160,8 +161,8 @@
             android:theme="@style/SwitchTheme"
             android:thumbTint="@color/colorPrimaryDark"
             android:trackTint="@color/colorPrimary"
-            app:layout_marginLeftPercent="1%"
-            app:layout_marginRightPercent="3%"/>
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginRightPercent="5%"/>
 
 
     </android.support.percent.PercentRelativeLayout>

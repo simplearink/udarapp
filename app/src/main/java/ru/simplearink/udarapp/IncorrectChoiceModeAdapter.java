@@ -25,14 +25,6 @@ public class IncorrectChoiceModeAdapter extends ArrayAdapter<String> {
         }
         // Lookup view for data population
         TextView word = convertView.findViewById(R.id.multiple_mode_word);
-
-        if (question.length() >= 18) {
-            word.setTextSize(29);
-        } else if (question.length() >= 15) {
-            word.setTextSize(33);
-        } else {
-            word.setTextSize(40);
-        }
         word.setText(question);
 
         return convertView;

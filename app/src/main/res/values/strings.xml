@@ -34,4 +34,9 @@
     <string name="correct_answer">Верный ответ</string>
     <string name="correct_accent">Правильное ударение</string>
     <string name="loading">Загрузка...</string>
+
+    <string name="appID">ca-app-pub-2753151843787409~3244524218</string>
+    <string name="appBannerID">ca-app-pub-2753151843787409/6527618518</string>
+    <string name="instructions">Инструкции</string>
+    <string name="appInterstitalID">ca-app-pub-2753151843787409/9700576768</string>
 </resources>

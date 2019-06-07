@@ -6,5 +6,6 @@
 
     <color name="correctAnswer">#99fd9a</color>
     <color name="wrongAnswer">#ff9899</color>
+    <color name="semiWhite">#c8FFFFFF</color>
 
 </resources>

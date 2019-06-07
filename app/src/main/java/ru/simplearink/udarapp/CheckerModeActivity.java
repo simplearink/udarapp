@@ -18,7 +18,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.concurrent.ExecutionException;
+
 
 public class CheckerModeActivity extends AppCompatActivity {
     private TextView updateTextView;
@@ -28,6 +35,9 @@ public class CheckerModeActivity extends AppCompatActivity {
     private TextView rightCounter;
     private Button finishBtn;
     private TextView timerTextView;
+    private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
+
 
     private CheckerGameController stats;
     private CheckerResultObject currentWordData;
@@ -45,6 +55,16 @@ public class CheckerModeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checker_mode);
+
+        MobileAds.initialize(this, this.getResources().getString(R.string.appID));
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(this.getResources().getString(R.string.appInterstitalID));
+
+        mInterstitialAd.setAdListener(mInterstitialAdListener);
 
         timerTextView = findViewById(R.id.time);
 
@@ -67,10 +87,22 @@ public class CheckerModeActivity extends AppCompatActivity {
         gameTimer.start();
     }
 
+    AdListener mInterstitialAdListener = new AdListener() {
+        @Override
+        public void onAdLoaded() {
+            mInterstitialAd.show();
+        }
+
+        @Override
+        public void onAdFailedToLoad(int errorCode) {
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        }
+    };
+
     CountDownTimer gameTimer = new CountDownTimer(60000, 100) {
 
         public void onTick(long millisUntilFinished) {
-            timerTextView.setText(String.valueOf((double) millisUntilFinished / 1000));
+            timerTextView.setText(String.format("%.1f", (double) millisUntilFinished / 1000));
         }
 
         @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
@@ -129,6 +161,8 @@ public class CheckerModeActivity extends AppCompatActivity {
     View.OnClickListener oclFinishBtn = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            mInterstitialAd.show();
             Intent result = new Intent(CheckerModeActivity.this, ResultActivity.class);
             SharedPreferences statistics = getSharedPreferences(ResultActivity.APP_STATS, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = statistics.edit();

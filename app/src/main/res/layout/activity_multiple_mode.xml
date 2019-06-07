@@ -11,17 +11,17 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        app:layout_marginTopPercent="5%"
-        android:layout_marginBottom="10dp"
+        app:layout_marginTopPercent="3%"
         android:gravity="center_horizontal">
 
 
         <TextView
             android:id="@+id/level"
+            app:fontFamily="@font/helvetica"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="25dp"
             android:background="@drawable/roudedrec"
             android:gravity="center|bottom"
             android:padding="5dp"
@@ -30,16 +30,14 @@
             android:text="@string/level_init"
             android:textColor="@color/colorAccent"
             android:textSize="35sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <TextView
+            android:layout_centerHorizontal="true"
             android:id="@+id/question"
             android:layout_width="128dp"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="60dp"
-            android:layout_toEndOf="@+id/level"
             android:background="@drawable/roudedrec"
             android:gravity="center"
             android:scaleType="fitCenter"
@@ -50,12 +48,12 @@
 
         <TextView
             android:id="@+id/inARow"
+            app:fontFamily="@font/helvetica"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="5dp"
-            android:layout_toEndOf="@+id/question"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
             android:background="@drawable/roudedrec"
             android:gravity="center|bottom"
             android:padding="5dp"
@@ -122,13 +120,26 @@
         android:layout_below="@id/choiceModeWords"
         app:layout_widthPercent="55%"
         android:layout_height="60dp"
-        app:layout_marginTopPercent="3%"
-        android:layout_marginBottom="20dp"
+        app:layout_marginTopPercent="2%"
         android:background="@drawable/roudedrec"
         android:text="@string/finish"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent"
         android:textSize="25sp" />
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_below="@id/finishMultiple"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:layout_marginBottomPercent="1%"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/appBannerID">
+    </com.google.android.gms.ads.AdView>
 
 
 </android.support.percent.PercentRelativeLayout>

@@ -28,7 +28,8 @@
         android:text="@string/results"
         android:textColor="@color/colorAccent"
         android:textSize="40sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
     <android.support.percent.PercentRelativeLayout
         android:id="@+id/firstRow"
@@ -38,120 +39,110 @@
         app:layout_marginTopPercent="7%"
         android:gravity="center">
 
-
-        <TextView
-            android:id="@+id/mistakesCounter"
+        <RelativeLayout
+            android:id="@+id/mistakesCounterField"
+            app:layout_marginRightPercent="15%"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="5dp"
             android:background="@drawable/roudedrec"
-            android:gravity="center|bottom"
-            android:padding="5dp"
-            android:scaleType="fitCenter"
-            android:singleLine="true"
-            android:text="@string/counter_init"
-            android:textColor="@color/colorAccent"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_toStartOf="@+id/wholeSetSizeField">
 
-        <TextView
-            android:id="@+id/wholeSetSize"
-            android:layout_width="80dp"
+            <TextView
+                android:id="@+id/mistakesText"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_alignTop="@+id/mistakesCounter"
+                android:gravity="center"
+                android:text="@string/mistakes"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/mistakesCounter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="@string/counter_init"
+                android:textColor="@color/colorAccent"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:autoSizeTextType="uniform"
+                app:fontFamily="@font/helvetica" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/wholeSetSizeField"
             android:layout_height="80dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="62dp"
-            android:layout_marginTop="0dp"
-            android:layout_toEndOf="@+id/mistakesCounter"
+            android:layout_width="80dp"
             android:background="@drawable/roudedrec"
-            android:gravity="center|bottom"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:scaleType="fitCenter"
-            android:text="@string/counter_init"
-            android:textColor="@color/colorAccent"
-            android:textSize="55sp"
-            android:textStyle="bold" />
+            android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/correctCounter"
+            <TextView
+                android:id="@+id/wholeSetSizeText"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_alignTop="@+id/wholeSetSize"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:text="@string/wholeSet"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/wholeSetSize"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:text="@string/counter_init"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                app:autoSizeTextType="uniform"
+                app:fontFamily="@font/helvetica" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/correctCounterField"
+            android:layout_toEndOf="@+id/wholeSetSizeField"
+            app:layout_marginLeftPercent="15%"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="62dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="0dp"
-            android:layout_toEndOf="@+id/wholeSetSize"
-            android:background="@drawable/roudedrec"
-            android:gravity="center|bottom"
-            android:padding="5dp"
-            android:singleLine="true"
-            android:text="@string/counter_init"
-            android:textColor="@color/colorAccent"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:background="@drawable/roudedrec">
 
-        <TextView
-            android:id="@+id/correctText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/mistakesCounter"
-            android:layout_alignTop="@+id/mistakesCounter"
-            android:layout_alignEnd="@+id/mistakesCounter"
-            android:layout_alignBottom="@+id/mistakesCounter"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="50dp"
-            android:gravity="center"
-            android:text="@string/mistakes"
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/correctText"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:gravity="center"
+                android:text="@string/rightAns"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/mistakesText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/correctCounter"
-            android:layout_alignTop="@+id/correctCounter"
-            android:layout_alignEnd="@+id/correctCounter"
-            android:layout_alignBottom="@+id/correctCounter"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="50dp"
-            android:gravity="center"
-            android:text="@string/rightAns"
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/correctCounter"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="@string/counter_init"
+                android:textColor="@color/colorAccent"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:autoSizeTextType="uniform"
+                app:fontFamily="@font/helvetica" />
 
-        <TextView
-            android:id="@+id/wholeSetSizeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/wholeSetSize"
-            android:layout_alignTop="@+id/wholeSetSize"
-            android:layout_alignEnd="@+id/wholeSetSize"
-            android:layout_alignBottom="@+id/wholeSetSize"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="55dp"
-            android:gravity="center"
-            android:text="@string/wholeSet"
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
+        </RelativeLayout>
 
     </android.support.percent.PercentRelativeLayout>
 
@@ -170,15 +161,18 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
             android:background="@drawable/roudedrec"
-            android:gravity="center|bottom"
+            android:gravity="center"
+            android:paddingTop="7dp"
+            android:paddingBottom="2dp"
             android:scaleType="fitCenter"
             android:singleLine="true"
             android:text="@string/counter_init"
             android:textColor="@color/colorAccent"
             android:textSize="27sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform"
+            app:fontFamily="@font/helvetica" />
 
         <TextView
             android:id="@+id/avgTime"
@@ -188,16 +182,18 @@
             android:layout_marginStart="70dp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/bestTime"
-            app:layout_marginLeftPercent="20%"
             android:background="@drawable/roudedrec"
-            android:gravity="center|bottom"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:gravity="center"
+            android:paddingTop="7dp"
+            android:paddingBottom="2dp"
             android:scaleType="fitCenter"
             android:text="@string/counter_init"
             android:textColor="@color/colorAccent"
             android:textSize="27sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform"
+            app:fontFamily="@font/helvetica"
+            app:layout_marginLeftPercent="20%" />
 
         <TextView
             android:id="@+id/bestTimeText"
@@ -206,8 +202,7 @@
             android:layout_alignStart="@+id/bestTime"
             android:layout_alignTop="@+id/bestTime"
             android:layout_alignEnd="@+id/bestTime"
-            android:layout_alignBottom="@+id/bestTime"
-            android:layout_marginBottom="30dp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="@string/bestTime"
             android:textColor="@color/colorPrimary"
@@ -221,13 +216,7 @@
             android:layout_alignStart="@+id/avgTime"
             android:layout_alignTop="@+id/avgTime"
             android:layout_alignEnd="@+id/avgTime"
-            android:layout_alignBottom="@+id/avgTime"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="@string/avgTime"
             android:textColor="@color/colorPrimary"
@@ -265,6 +254,5 @@
         android:textAllCaps="false"
         android:textColor="@color/colorAccent"
         android:textSize="25sp" />
-
 
 </android.support.percent.PercentRelativeLayout>
