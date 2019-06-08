@@ -23,7 +23,7 @@
         android:paddingEnd="10dp"
         android:text="@string/slOvo"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="25sp"
+        android:textSize="22sp"
         app:autoSizeTextType="uniform"
         android:textStyle="bold"/>
 

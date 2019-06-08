@@ -21,5 +21,10 @@
     <style name="Animation">
         <item name="android:windowEnterAnimation">@anim/up_animation</item>
     </style>
+
+    <style name="UpDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/up_animation</item>
+    </style>
+
 </resources>
 

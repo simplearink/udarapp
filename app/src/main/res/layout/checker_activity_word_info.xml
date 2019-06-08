@@ -4,23 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/checker_activity_word_info"
     android:layout_width="match_parent"
-    android:layout_height="240dp"
-    android:layout_marginBottom="40dp"
+    android:layout_height="wrap_content"
     android:paddingBottom="15dp"
     android:paddingEnd="15dp"
-    android:paddingStart="15dp">
-
-    <TextView
-        android:id="@+id/statsSingleMore"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/roudedrec" />
+    android:paddingStart="15dp"
+    android:background="@drawable/roudedrec">
 
     <TextView
         android:id="@+id/questionWord"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignTop="@+id/statsSingleMore"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="12dp"
         android:gravity="center"
         android:maxLines="1"
@@ -85,11 +79,12 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/corr"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_below="@id/superField"
-        android:layout_above="@+id/correctQuestionWord"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/superField"
         android:layout_alignStart="@+id/correctQuestionWord"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="@string/correct_accent"
         android:textColor="#63FFFFFF"
@@ -100,8 +95,9 @@
         android:id="@+id/correctQuestionWord"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignBottom="@+id/statsSingleMore"
-        android:layout_marginBottom="12dp"
+        android:layout_below="@id/corr"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:maxLines="1"
         android:paddingStart="10dp"

@@ -147,6 +147,7 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
             editor.apply();
 
             startActivity(result);
+            IncorrectChoiceModeActivity.this.finish();
         }
     };
 

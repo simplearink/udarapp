@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent = new Intent(MainActivity.this, CheckerModeActivity.class);
             startActivity(intent);
+            MainActivity.this.finish();
         }
     };
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent = new Intent(MainActivity.this, IncorrectChoiceModeActivity.class);
             startActivity(intent);
+            MainActivity.this.finish();
         }
     };
 
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(intent);
+            MainActivity.this.finish();
         }
     };
 

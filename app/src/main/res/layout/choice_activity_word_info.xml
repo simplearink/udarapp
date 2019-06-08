@@ -1,43 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/window"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#C8FFFFFF"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="40dp"
+    android:background="@drawable/roudedrec"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/choiceHeader"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="start|center"
+        android:paddingStart="15dp"
+        android:text="@string/multiple_game_mode"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/statsChoiceList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/roudedrec"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="40dp">
+        android:layout_gravity="bottom"
+        android:paddingBottom="15dp" />
+</LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/choiceHeader"
-            android:text="@string/multiple_game_mode"
-            android:textSize="22sp"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:gravity="start|center"
-            android:paddingStart="15dp" />
-
-        <ListView
-            android:id="@+id/statsChoiceList"
-            android:layout_gravity="bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="15dp" />
-    </LinearLayout>
-</RelativeLayout>

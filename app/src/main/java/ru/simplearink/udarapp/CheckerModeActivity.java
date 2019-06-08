@@ -193,6 +193,7 @@ public class CheckerModeActivity extends AppCompatActivity {
             editor.putInt(ResultActivity.APP_MODE, 0);
             editor.apply();
             startActivity(result);
+            CheckerModeActivity.this.finish();
         }
     };
 

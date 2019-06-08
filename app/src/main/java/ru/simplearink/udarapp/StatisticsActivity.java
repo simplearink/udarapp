@@ -1,6 +1,7 @@
 package ru.simplearink.udarapp;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -17,8 +19,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -47,6 +52,7 @@ public class StatisticsActivity extends AppCompatActivity {
     private CorrectWordExtractor connection;
 
     private int mode;
+    private Dialog pw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +115,7 @@ public class StatisticsActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent back = new Intent(StatisticsActivity.this, ResultActivity.class);
             startActivity(back);
+            StatisticsActivity.this.finish();
         }
     };
 
@@ -148,13 +155,14 @@ public class StatisticsActivity extends AppCompatActivity {
         }
     };
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
+
     protected void showStats(int position, int appMode) {
         SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
 
         LayoutInflater inflater;
         View layout;
-        final PopupWindow pw;
+//        final PopupWindow pw;
 
         if (appMode == 0) {
             String word = shared.getString(APP_STATS_RES_WORD + position, null);
@@ -189,7 +197,6 @@ public class StatisticsActivity extends AppCompatActivity {
                     dip,
                     r.getDisplayMetrics()
             );
-            //pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, (int)px, true);
 
         } else {
             inflater = (LayoutInflater) StatisticsActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -208,28 +215,35 @@ public class StatisticsActivity extends AppCompatActivity {
                 String word = shared.getString(APP_STATS_RES_WORD + "[" + position + "][" + i + "]", null);
                 statWords.add(new IncorrectChoiceResultObject(word, correctPos, userAnsPos));
             }
-            //pw = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         }
 
         int height = StatisticsActivity.this.getResources().getDisplayMetrics().heightPixels;
         int width = StatisticsActivity.this.getResources().getDisplayMetrics().widthPixels;
 
-        pw = new PopupWindow(layout, width, height, true);
-
-        pw.setTouchable(true);
-
-        pw.getContentView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        pw = new Dialog(this) {
+            public boolean dispatchTouchEvent(MotionEvent event)
+            {
                 pw.dismiss();
+                return false;
             }
-        });
+        };
 
-        pw.setOutsideTouchable(true);
-        pw.setFocusable(true);
-        // display the pop-up in the center
-        pw.setAnimationStyle(R.style.Animation);
-        pw.showAtLocation(layout, Gravity.BOTTOM, 0, 0);
+        pw.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        pw.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        pw.setContentView(layout);
+
+        Window window = pw.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        window.setWindowAnimations(R.style.UpDialogAnimation);
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+        wlp.y = 30;
+        wlp.width = width - 60;
+        wlp.gravity = Gravity.BOTTOM;
+        window.setAttributes(wlp);
+
+        pw.setCanceledOnTouchOutside(true);
+        pw.show();
 
     }
 }

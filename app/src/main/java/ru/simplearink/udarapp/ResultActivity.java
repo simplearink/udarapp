@@ -90,6 +90,7 @@ public class ResultActivity extends AppCompatActivity {
             editor.apply();
             Intent backToMain = new Intent(ResultActivity.this, MainActivity.class);
             startActivity(backToMain);
+            ResultActivity.this.finish();
         }
     };
 
