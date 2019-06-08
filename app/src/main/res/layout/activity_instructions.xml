@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/checker_activity_word_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@color/colorAccent">
+
+    <RelativeLayout
+        android:id="@+id/instructionField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roudedrec"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/instructionsText"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/instruction"
+            android:gravity="center_horizontal"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/ifCorrect"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/instructionsText"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:scaleType="fitStart"
+            android:text="@string/doIfCorrect"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/firstLine"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/ifCorrect"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/white_roundrec"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+            <TextView
+                android:id="@+id/dotCorrect"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/dot"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/ifWrong"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/firstLine"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:scaleType="fitStart"
+            android:text="@string/IfIncorrect"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/secondLine"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/ifWrong"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/white_roundrec"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:id="@+id/dotIncorrect"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/dot"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/instructionField"
+        android:layout_marginTop="30dp"
+        app:layout_widthPercent="40%"
+        android:layout_height="60dp"
+        android:background="@drawable/roudedrec"
+        app:autoSizeTextType="uniform"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:text="@string/ok"
+        android:textColor="@color/colorAccent"
+        android:maxLines="1"/>
+
+</android.support.percent.PercentRelativeLayout>

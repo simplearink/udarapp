@@ -12,9 +12,13 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
 
+import static ru.simplearink.udarapp.MainActivity.APP_PREFERENCES_EGE;
+import static ru.simplearink.udarapp.MainActivity.APP_PREFERENCES_INSTRUCTIONS;
+
 public class SettingsActivity extends AppCompatActivity {
     private ImageButton backButton;
     private Switch egeSwitch;
+    private Switch instructions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +35,28 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("egeSwitch", egeSwitch.isChecked());
+                editor.putBoolean(APP_PREFERENCES_EGE, egeSwitch.isChecked());
                 editor.apply();
             }
 
         });
+
+        instructions = findViewById(R.id.switch2);
+        instructions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(APP_PREFERENCES_INSTRUCTIONS, instructions.isChecked());
+                editor.apply();
+            }
+
+        });
+
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
-        egeSwitch.setChecked(sharedPreferences.getBoolean("egeSwitch", false));
+        egeSwitch.setChecked(sharedPreferences.getBoolean(APP_PREFERENCES_EGE, false));
+        instructions.setChecked(sharedPreferences.getBoolean(APP_PREFERENCES_INSTRUCTIONS, false));
     }
 
     View.OnClickListener oclBtnBack = new View.OnClickListener() {

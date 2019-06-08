@@ -39,4 +39,8 @@
     <string name="appBannerID">ca-app-pub-2753151843787409/6527618518</string>
     <string name="instructions">Инструкции</string>
     <string name="appInterstitalID">ca-app-pub-2753151843787409/9700576768</string>
+    <string name="instruction">Инструкция</string>
+    <string name="doIfCorrect">Делай свайп вправо, если считаешь, что ударение в слове указано верно.</string>
+    <string name="ok">Понятно</string>
+    <string name="IfIncorrect">Делай свайп влево, если в ударении допущена ошибка.</string>
 </resources>

@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String APP_PREFERENCES = "udarSettings";
     public static final String APP_PREFERENCES_EGE = "egeSwitch";
+    public static final String APP_PREFERENCES_INSTRUCTIONS = "instructions";
+    public static final String APP_PREFERENCES_FIRST_START = "firstStart";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +36,6 @@ public class MainActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
-
-        SharedPreferences AppSettings;
-        AppSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         settingsButton = findViewById(R.id.settings);
         settingsButton.setOnClickListener(oclBtnSettings);
@@ -52,7 +50,22 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener oclBtnCheck = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, CheckerModeActivity.class);
+            SharedPreferences AppSettings;
+            AppSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
+            Intent intent;
+
+            if (AppSettings.getBoolean(APP_PREFERENCES_INSTRUCTIONS, false)) {
+                intent = new Intent(MainActivity.this, InstructionsActivity.class);
+            } else if (AppSettings.getBoolean(APP_PREFERENCES_FIRST_START, true)) {
+                SharedPreferences.Editor editor = AppSettings.edit();
+                editor.putBoolean(APP_PREFERENCES_FIRST_START, false);
+                editor.apply();
+                intent = new Intent(MainActivity.this, InstructionsActivity.class);
+            } else {
+                intent = new Intent(MainActivity.this, CheckerModeActivity.class);
+            }
+
             startActivity(intent);
             MainActivity.this.finish();
         }
