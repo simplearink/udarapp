@@ -17,19 +17,19 @@
 
         <TextView
             android:id="@+id/level"
-            app:fontFamily="@font/helvetica"
+            android:fontFamily="sans-serif"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
             android:layout_marginStart="25dp"
             android:background="@drawable/roudedrec"
-            android:gravity="center|bottom"
-            android:padding="5dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="7dp"
             android:scaleType="fitCenter"
             android:singleLine="true"
             android:text="@string/level_init"
             android:textColor="@color/colorAccent"
-            android:textSize="35sp"
+            app:autoSizeTextType="uniform"
             android:textStyle="bold" />
 
         <TextView
@@ -48,7 +48,8 @@
 
         <TextView
             android:id="@+id/inARow"
-            app:fontFamily="@font/helvetica"
+            android:fontFamily="sans-serif"
+            android:layout_below="@id/bestText"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentTop="true"
@@ -56,11 +57,11 @@
             android:layout_marginEnd="25dp"
             android:background="@drawable/roudedrec"
             android:gravity="center|bottom"
-            android:padding="5dp"
             android:singleLine="true"
             android:text="@string/counter_init"
+            android:paddingTop="7dp"
             android:textColor="@color/colorAccent"
-            android:textSize="35sp"
+            app:autoSizeTextType="uniform"
             android:textStyle="bold" />
 
         <TextView

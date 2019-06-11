@@ -213,14 +213,6 @@ public class CheckerModeActivity extends AppCompatActivity {
         }
 
         String currentWord = res[0][0];
-        if (currentWord.length() >= 18) {
-            updateTextView.setTextSize(29);
-        } else if (currentWord.length() >= 15) {
-            updateTextView.setTextSize(33);
-        } else {
-            updateTextView.setTextSize(40);
-        }
-
 
         updateTextView.setText(currentWord);
         correctness = correct(res[1][0]);

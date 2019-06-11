@@ -71,7 +71,8 @@
                 android:textSize="40sp"
                 android:textStyle="bold"
                 app:autoSizeTextType="uniform"
-                app:fontFamily="@font/helvetica" />
+                android:fontFamily="sans-serif"
+                android:paddingTop="5dp"/>
 
         </RelativeLayout>
 
@@ -104,7 +105,8 @@
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 app:autoSizeTextType="uniform"
-                app:fontFamily="@font/helvetica" />
+                android:fontFamily="sans-serif"
+                android:paddingTop="5dp"/>
 
         </RelativeLayout>
 
@@ -140,7 +142,8 @@
                 android:textSize="40sp"
                 android:textStyle="bold"
                 app:autoSizeTextType="uniform"
-                app:fontFamily="@font/helvetica" />
+                android:fontFamily="sans-serif"
+                android:paddingTop="5dp"/>
 
         </RelativeLayout>
 
@@ -163,8 +166,8 @@
             android:layout_alignParentTop="true"
             android:background="@drawable/roudedrec"
             android:gravity="center"
-            android:paddingTop="7dp"
-            android:paddingBottom="2dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="1dp"
             android:scaleType="fitCenter"
             android:singleLine="true"
             android:text="@string/counter_init"
@@ -172,7 +175,7 @@
             android:textSize="27sp"
             android:textStyle="bold"
             app:autoSizeTextType="uniform"
-            app:fontFamily="@font/helvetica" />
+            android:fontFamily="sans-serif" />
 
         <TextView
             android:id="@+id/avgTime"
@@ -184,15 +187,15 @@
             android:layout_toEndOf="@+id/bestTime"
             android:background="@drawable/roudedrec"
             android:gravity="center"
-            android:paddingTop="7dp"
-            android:paddingBottom="2dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="1dp"
             android:scaleType="fitCenter"
             android:text="@string/counter_init"
             android:textColor="@color/colorAccent"
             android:textSize="27sp"
             android:textStyle="bold"
             app:autoSizeTextType="uniform"
-            app:fontFamily="@font/helvetica"
+            android:fontFamily="sans-serif"
             app:layout_marginLeftPercent="20%" />
 
         <TextView
