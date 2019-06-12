@@ -13,19 +13,19 @@ import java.net.URL;
 import java.util.Scanner;
 
 class ApiConnection extends AsyncTask<Void, Void, String[][]> {
-    int responseCode;
 
-    String wordID;
-    String word;
-    String correctness;
+    private String wordID;
+    private String word;
+    private String correctness;
 
-    String[] words;
-    String[] wordsIDs;
-    String[] wordsCorrectness;
+    private String[] words;
+    private String[] wordsIDs;
+    private String[] wordsCorrectness;
 
-    int egeModeOn;
-    int gameMode;
-    int num;
+    private int egeModeOn;
+    private int gameMode;
+    private int num;
+    private String correctWord;
 
 
     public ApiConnection(boolean egeMode, int mode, int numb) { // mode: 0 - checker mode; 1 - selection mode
@@ -55,10 +55,11 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         String[][] resArray;
 
         if (gameMode == 0) {
-            resArray = new String[3][1];
+            resArray = new String[4][1];
             resArray[0][0] = word;
             resArray[1][0] = correctness;
             resArray[2][0] = wordID;
+            resArray[3][0] = correctWord;
         } else {
             resArray = new String[3][num];
             resArray[0] = words;
@@ -74,11 +75,10 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         super.onPostExecute(result);
     }
 
-    //method now works only for Checker Mode
     protected void connectApi() throws IOException {
         URL url;
         if (gameMode == 0) {
-            url = new URL("http://api.accent-checker.ru/api/v1.1/words/get_word/?type=" + egeModeOn);
+            url = new URL("http://www.api.accent-checker.ru/v2.0/words/get_word/?type=" + egeModeOn);
         } else if (num != 0) {
             url = new URL("http://api.accent-checker.ru/v2.0/words/get_question/?num_q=1&type=" + egeModeOn + "&num_w=" + num);
         } else {
@@ -87,7 +87,7 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.connect();
-        responseCode = conn.getResponseCode();
+        int responseCode = conn.getResponseCode();
         if (responseCode != 200)
             throw new RuntimeException("HttpResponseCode:" + responseCode);
         else {
@@ -106,8 +106,6 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         while (sc.hasNext()) {
             inline += sc.nextLine();
         }
-//        System.out.println("\nJSON Response in String format");
-//        System.out.println(inline);
         sc.close();
 
         JsonParser parser = new JsonParser();
@@ -121,8 +119,7 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
             word = jsonObject.get("word").toString().replace("\"", "");
             correctness = jsonObject.get("answer").toString();
             wordID = jsonObject.get("word_id").toString();
-            System.out.println("CHECK THIS!");
-            System.out.println(wordID + " " + word);
+            correctWord = jsonObject.get("correct_word").toString().replace("\"", "");
         }
     }
 
@@ -136,8 +133,6 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         while (sc.hasNext()) {
             inline += sc.nextLine();
         }
-//        System.out.println("\nJSON Response in String format");
-//        System.out.println(inline);
         sc.close();
 
         JsonParser parser = new JsonParser();
@@ -155,8 +150,6 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
                     JsonObject jsonOb = jsonElem.getAsJsonObject();
                     wordsIDs[i] = jsonOb.get("word_id").toString();
                     words[i] = jsonOb.get("word").toString();
-                    System.out.println("CHECK THIS!");
-                    System.out.println(wordsIDs[i] + " " + words[i]);
                 }
             }
             JsonElement ans = jsonObject.get("answer");

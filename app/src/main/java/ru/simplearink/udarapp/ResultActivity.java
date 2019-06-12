@@ -1,6 +1,5 @@
 package ru.simplearink.udarapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -35,15 +32,6 @@ public class ResultActivity extends AppCompatActivity {
 
     SharedPreferences statsPreferences;
 
-    private Button backButton;
-    private Button statsButton;
-
-    private TextView mistakesText;
-    private TextView correctText;
-    private TextView wholeCount;
-    private TextView bestTime;
-    private TextView avgTime;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,17 +39,17 @@ public class ResultActivity extends AppCompatActivity {
 
         statsPreferences = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
 
-        backButton = findViewById(R.id.toMainButton);
+        Button backButton = findViewById(R.id.toMainButton);
         backButton.setOnClickListener(oclBackMain);
 
-        statsButton = findViewById(R.id.statsSingle);
+        Button statsButton = findViewById(R.id.statsSingle);
         statsButton.setOnClickListener(oclStats);
 
-        mistakesText = findViewById(R.id.mistakesCounter);
-        correctText = findViewById(R.id.correctCounter);
-        wholeCount = findViewById(R.id.wholeSetSize);
-        bestTime = findViewById(R.id.bestTime);
-        avgTime = findViewById(R.id.avgTime);
+        TextView mistakesText = findViewById(R.id.mistakesCounter);
+        TextView correctText = findViewById(R.id.correctCounter);
+        TextView wholeCount = findViewById(R.id.wholeSetSize);
+        TextView bestTime = findViewById(R.id.bestTime);
+        TextView avgTime = findViewById(R.id.avgTime);
 
         SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
 

@@ -180,6 +180,7 @@ public class CheckerModeActivity extends AppCompatActivity {
                 editor.putString(ResultActivity.APP_STATS_RES_WORD + i, stats.get(i).getWord());
                 editor.putString(ResultActivity.APP_STATS_RES_CORRECT + i, stats.get(i).getAnswer());
                 editor.putString(ResultActivity.APP_STATS_RES_USERS + i, String.valueOf(stats.get(i).getUserAnswer()));
+                editor.putString(ResultActivity.APP_STATS_COR_WORD + i, stats.get(i).getCorrectWord());
             }
 
             editor.putInt(ResultActivity.APP_STATS_MISTAKES, counter - correctCounter);
@@ -266,7 +267,7 @@ public class CheckerModeActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    queue.add(new CheckerResultObject(0, Integer.parseInt(res[2][0]), res[0][0], res[1][0], true));
+                    queue.add(new CheckerResultObject(0, Integer.parseInt(res[2][0]), res[0][0], res[1][0], true, res[3][0]));
                 }
             }
         }).start();
@@ -299,7 +300,7 @@ public class CheckerModeActivity extends AppCompatActivity {
         updateTextView.setText(currentWord);
         correctness = correct(res[1][0]);
 
-        currentWordData = new CheckerResultObject(0, Integer.parseInt(res[2][0]), res[0][0], res[1][0], true);
+        currentWordData = new CheckerResultObject(0, Integer.parseInt(res[2][0]), res[0][0], res[1][0], true, res[3][0]);
         swipeCounter = 0;
     }
 

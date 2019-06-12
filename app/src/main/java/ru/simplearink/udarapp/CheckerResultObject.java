@@ -7,14 +7,16 @@ public class CheckerResultObject implements Serializable {
     private int wordId;
     private String word;
     private String answer;
+    private String correctWord;
     private boolean userAnswer;
 
-    CheckerResultObject(int newIter, int newWordId, String newWord, String newAnswer, boolean newUserAnswer) {
+    CheckerResultObject(int newIter, int newWordId, String newWord, String newAnswer, boolean newUserAnswer, String newCorrectWord) {
         iter = newIter;
         wordId = newWordId;
         word = newWord;
         answer = newAnswer;
         userAnswer = newUserAnswer;
+        correctWord = newCorrectWord;
     }
 
     public int getIter() {return iter; }
@@ -33,6 +35,10 @@ public class CheckerResultObject implements Serializable {
 
     public boolean getUserAnswer() {
         return userAnswer;
+    }
+
+    public String getCorrectWord() {
+        return correctWord;
     }
 
     public void setWordId(int wordId) {

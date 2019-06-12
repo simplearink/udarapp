@@ -49,7 +49,6 @@ public class StatisticsActivity extends AppCompatActivity {
     private CheckerStatsAdapter checkerAdapter;
     private IncorrectChoiceStatsAdapter choiceAdapter;
     private MultipleModeAdapter multipleAdapter;
-    private CorrectWordExtractor connection;
 
     private int mode;
     private Dialog pw;
@@ -78,7 +77,8 @@ public class StatisticsActivity extends AppCompatActivity {
                 String word = shared.getString(APP_STATS_RES_WORD + i, null);
                 String cor = shared.getString(APP_STATS_RES_CORRECT + i, null);
                 String users = shared.getString(APP_STATS_RES_USERS + i, null);
-                arrayOfAnswers.add(new CheckerResultObject(i + 1, id, word, cor, Boolean.valueOf(users)));
+                String correctWord = shared.getString(APP_STATS_RES_WORD + i, null);
+                arrayOfAnswers.add(new CheckerResultObject(i + 1, id, word, cor, Boolean.valueOf(users), correctWord));
             }
         } else if (mode == 1) {
             ArrayList<IncorrectChoiceResultObject> array = new ArrayList<>();
@@ -123,35 +123,7 @@ public class StatisticsActivity extends AppCompatActivity {
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            SharedPreferences shared = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
-            if (mode == 0) {
-                String word = shared.getString(APP_STATS_RES_WORD + position, null);
-                String cor = shared.getString(APP_STATS_RES_CORRECT + position, null);
-                String users = shared.getString(APP_STATS_RES_USERS + position, null);
-
-                connection = new CorrectWordExtractor(shared.getInt(APP_STATS_RES_ID + position, 0));
-                connection.execute();
-
-                String res = null;
-                try {
-                    res = connection.get();
-
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                SharedPreferences.Editor editor = shared.edit();
-                editor.putString(APP_STATS_COR_WORD + position, res);
-                editor.apply();
-
-                showStats(position, mode);
-
-//                System.out.println("Word = " + word + "; Correct word = " + res + "; Correct answer = " + cor + "; User's answer = " + users);
-            } else if (mode == 1) {
-                showStats(position, mode);
-            }
+            showStats(position, mode);
         }
     };
 
