@@ -246,4 +246,12 @@ public class StatisticsActivity extends AppCompatActivity {
         pw.show();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(StatisticsActivity.this, ResultActivity.class);
+        startActivity(intent);
+        StatisticsActivity.this.finish();
+    }
 }

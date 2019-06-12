@@ -22,4 +22,8 @@ public class CheckerGameController {
         public int size() {
             return result.size();
         }
+
+        public void remove(int index) {
+            result.remove(index);
+        }
 }

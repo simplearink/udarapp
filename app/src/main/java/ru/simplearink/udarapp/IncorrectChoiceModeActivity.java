@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,6 +28,7 @@ import com.google.android.gms.ads.MobileAds;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import static ru.simplearink.udarapp.ResultActivity.APP_STATS;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_ANS_CORRECT;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_CORRECT;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_QUEST_SIZE;
@@ -110,7 +113,7 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
             mInterstitialAd.show();
             Intent result = new Intent(IncorrectChoiceModeActivity.this, ResultActivity.class);
 
-            SharedPreferences statistics = getSharedPreferences(ResultActivity.APP_STATS, Context.MODE_PRIVATE);
+            SharedPreferences statistics = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = statistics.edit();
             editor.putInt(APP_STATS_RES_SIZE, counter);
             editor.apply();
@@ -134,11 +137,11 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
             editor.putInt(ResultActivity.APP_STATS_CORRECT, correctCounter);
             editor.putInt(ResultActivity.APP_STATS_WHOLE, counter);
             double avg;
-            if (correctCounter == 0) {
+            if (correctCounter == 0 || counter == 0) {
                 avg = 0.0;
                 bestTime = 0.0;
             } else {
-                avg = wholeTime / correctCounter / 1000;
+                avg = wholeTime / counter / 1000;
                 bestTime = bestTime / 1000;
             }
             editor.putString(ResultActivity.APP_STATS_BEST, String.format("%.1f", bestTime));
@@ -156,17 +159,16 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             boolean correctness = isCorrect(ids.get(position), correctWordID);
-
+            double ansTime = System.currentTimeMillis() - startTime;
+            wholeTime += ansTime;
             if (correctness) {
                 manageBlinkEffect(true);
                 inARowNow++;
                 counter++;
                 correctCounter++;
-                double ansTime = System.currentTimeMillis() - startTime;
                 if (ansTime < bestTime) {
                     bestTime = ansTime;
                 }
-                wholeTime += ansTime;
             } else {
                 manageBlinkEffect(false);
                 counter++;
@@ -244,5 +246,9 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
         anim.setDuration(700);
         anim.setEvaluator(new ArgbEvaluator());
         anim.start();
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

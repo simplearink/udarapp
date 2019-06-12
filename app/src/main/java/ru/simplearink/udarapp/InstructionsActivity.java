@@ -43,4 +43,8 @@ public class InstructionsActivity extends AppCompatActivity {
             InstructionsActivity.this.finish();
         }
     };
+
+    @Override
+    public void onBackPressed() {
+    }
 }

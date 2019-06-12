@@ -2,7 +2,6 @@ package ru.simplearink.udarapp;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +9,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,10 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
+
+import static ru.simplearink.udarapp.ResultActivity.APP_STATS;
 
 
 public class CheckerModeActivity extends AppCompatActivity {
@@ -41,6 +45,8 @@ public class CheckerModeActivity extends AppCompatActivity {
 
     private CheckerGameController stats;
     private CheckerResultObject currentWordData;
+    private ArrayList<CheckerResultObject> queue;
+    private int usedFromQueue = 0;
 
     private boolean correctness;
     private boolean user;
@@ -50,11 +56,14 @@ public class CheckerModeActivity extends AppCompatActivity {
     double startTime = 0;
     double bestTime = 60000;
     double wholeTime = 0;
+    int swipeCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checker_mode);
+        queue = new ArrayList<>();
+        makeQueue();
 
         MobileAds.initialize(this, this.getResources().getString(R.string.appID));
         mAdView = findViewById(R.id.adView);
@@ -85,6 +94,7 @@ public class CheckerModeActivity extends AppCompatActivity {
         updateWord();
         timerTextView.setText("60");
         gameTimer.start();
+        updateWord();
     }
 
     AdListener mInterstitialAdListener = new AdListener() {
@@ -112,47 +122,44 @@ public class CheckerModeActivity extends AppCompatActivity {
         }
     };
 
+
     View.OnTouchListener otlSwipe = new View.OnTouchListener() {
         float startX;
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN: //первое касание
+            if (currentWordData.getWord().equals(updateTextView.getText()) && swipeCounter == 0 && System.currentTimeMillis() - startTime > 150) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) { //первое касание
                     startX = event.getX();
-                    counter++;
-                    break;
-                case MotionEvent.ACTION_UP: //отпускание
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     float stopX = event.getX();
+                    counter++;
+                    swipeCounter++;
                     if (stopX > startX) {
                         if (correctness) {
+                            correctCounter++;
                             manageBlinkEffect(true);
                         } else {
                             manageBlinkEffect(false);
                         }
                         user = true;
-                    } else {
+                    } else if (stopX < startX) {
                         if (!correctness) {
                             manageBlinkEffect(true);
+                            correctCounter++;
                         } else {
                             manageBlinkEffect(false);
                         }
                         user = false;
                     }
-                    if (user == correctness) {
-                        String r = String.valueOf(++correctCounter);
-                        rightCounter.setText(String.valueOf(r));
-                        double ansTime = System.currentTimeMillis() - startTime;
-                        if (bestTime > ansTime) {
-                            bestTime = ansTime;
-                        }
-                        wholeTime += ansTime;
-                    }
-                    mistakesCounter.setText(String.valueOf(counter - correctCounter));
                     currentWordData.setUserAnswer(user);
-                    stats.add(currentWordData);
-                    updateWord();
-                    break;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            handler.sendEmptyMessage(0);
+                        }
+                    }).start();
+                }
             }
             return true;
         }
@@ -164,13 +171,11 @@ public class CheckerModeActivity extends AppCompatActivity {
             mInterstitialAd.loadAd(new AdRequest.Builder().build());
             mInterstitialAd.show();
             Intent result = new Intent(CheckerModeActivity.this, ResultActivity.class);
-            SharedPreferences statistics = getSharedPreferences(ResultActivity.APP_STATS, Context.MODE_PRIVATE);
+            SharedPreferences statistics = getSharedPreferences(APP_STATS, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = statistics.edit();
             editor.putInt(ResultActivity.APP_STATS_RES_SIZE, stats.size());
             editor.apply();
             for (int i = 0; i < stats.size(); i++) {
-//                System.out.println(stats.get(i).getWordId() + " " + stats.get(i).getWord() +
-//                        " " + stats.get(i).getAnswer() + " " + stats.get(i).getUserAnswer());
                 editor.putInt(ResultActivity.APP_STATS_RES_ID + i, stats.get(i).getWordId());
                 editor.putString(ResultActivity.APP_STATS_RES_WORD + i, stats.get(i).getWord());
                 editor.putString(ResultActivity.APP_STATS_RES_CORRECT + i, stats.get(i).getAnswer());
@@ -181,11 +186,11 @@ public class CheckerModeActivity extends AppCompatActivity {
             editor.putInt(ResultActivity.APP_STATS_CORRECT, correctCounter);
             editor.putInt(ResultActivity.APP_STATS_WHOLE, counter);
             double avg;
-            if (correctCounter == 0) {
+            if (correctCounter == 0 || counter == 0) {
                 avg = 0.0;
                 bestTime = 0.0;
             } else {
-                avg = wholeTime / correctCounter / 1000;
+                avg = wholeTime / counter / 1000;
                 bestTime = bestTime / 1000;
             }
             editor.putString(ResultActivity.APP_STATS_BEST, String.format("%.1f", bestTime));
@@ -198,6 +203,83 @@ public class CheckerModeActivity extends AppCompatActivity {
     };
 
     public void updateWord() {
+        if (counter != 0) {
+            double ansTime = System.currentTimeMillis() - startTime;
+            if (user == correctness) {
+                String r = String.valueOf(correctCounter);
+                rightCounter.setText(r);
+                if (bestTime > ansTime) {
+                    bestTime = ansTime;
+                }
+            }
+            wholeTime += ansTime;
+            mistakesCounter.setText(String.valueOf(counter - correctCounter));
+            stats.add(currentWordData);
+
+            if (queue.size() > usedFromQueue) {
+                getFromQueue();
+            } else {
+                ifQueueEmptyUpdate();
+            }
+        } else {
+            ifQueueEmptyUpdate();
+        }
+        startTime = System.currentTimeMillis();
+    }
+
+    public boolean correct(String answer) {
+        if (answer.equals("true"))
+            return true;
+        else return false;
+    }
+
+    private void manageBlinkEffect(boolean correctness) {
+        ObjectAnimator anim;
+        if (correctness) {
+            anim = ObjectAnimator.ofInt(applicationView,
+                    "backgroundColor", Color.GREEN, Color.WHITE);
+        } else {
+            anim = ObjectAnimator.ofInt(applicationView,
+                    "backgroundColor", Color.RED, Color.WHITE);
+        }
+        anim.setDuration(500);
+        anim.setEvaluator(new ArgbEvaluator());
+        anim.start();
+    }
+
+    private void makeQueue() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (queue.size() < 100) {
+                    SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
+
+                    connection = new ApiConnection(sharedPreferences.getBoolean(MainActivity.APP_PREFERENCES_EGE, false), 0, -1);
+                    connection.execute();
+
+                    String[][] res = null;
+                    try {
+                        res = connection.get();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    queue.add(new CheckerResultObject(0, Integer.parseInt(res[2][0]), res[0][0], res[1][0], true));
+                }
+            }
+        }).start();
+    }
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            updateWord();
+        }
+    };
+
+    private void ifQueueEmptyUpdate() {
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
         connection = new ApiConnection(sharedPreferences.getBoolean(MainActivity.APP_PREFERENCES_EGE, false), 0, -1);
@@ -218,34 +300,27 @@ public class CheckerModeActivity extends AppCompatActivity {
         correctness = correct(res[1][0]);
 
         currentWordData = new CheckerResultObject(0, Integer.parseInt(res[2][0]), res[0][0], res[1][0], true);
-        startTime = System.currentTimeMillis();
+        swipeCounter = 0;
     }
 
-    public boolean correct(String answer) {
-        if (answer.equals("true"))
-            return true;
-        else return false;
-    }
+    private void getFromQueue() {
+        currentWordData = queue.get(usedFromQueue);
+        usedFromQueue++;
 
-    private void manageBlinkEffect(boolean correctness) {
-        ObjectAnimator anim;
-        //ObjectAnimator anim2;
-        if (correctness) {
-            anim = ObjectAnimator.ofInt(applicationView,
-                    "backgroundColor", Color.GREEN, Color.WHITE);
-            //anim2 = ObjectAnimator.ofInt(updateTextView,
-            //"background", Color.GREEN, R.color.colorPrimaryDark);
-        } else {
-            anim = ObjectAnimator.ofInt(applicationView,
-                    "backgroundColor", Color.RED, Color.WHITE);
-            //anim2 = ObjectAnimator.ofInt(updateTextView,
-            //"background", Color.RED, R.color.colorPrimaryDark);
+        String currentWord = currentWordData.getWord();
+
+        updateTextView.setText(currentWord);
+        correctness = correct(currentWordData.getAnswer());
+        if (usedFromQueue == 100) {
+            queue = new ArrayList<>();
+            makeQueue();
+            usedFromQueue = 0;
         }
-        anim.setDuration(700);
-        // anim2.setDuration(700);
-        anim.setEvaluator(new ArgbEvaluator());
-        //anim2.setEvaluator(new ArgbEvaluator());
-        anim.start();
-        //anim2.start();
+        swipeCounter = 0;
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }
+
