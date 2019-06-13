@@ -62,10 +62,10 @@ public class ResultActivity extends AppCompatActivity {
         int whole = shared.getInt(APP_STATS_WHOLE, 0);
         wholeCount.setText(String.valueOf(whole));
 
-        String bestT = shared.getString(APP_STATS_BEST, "0");
+        String bestT = shared.getString(APP_STATS_BEST, "0.0");
         bestTime.setText(bestT);
 
-        String avgT = shared.getString(APP_STATS_AVG, "0");
+        String avgT = shared.getString(APP_STATS_AVG, "0.0");
         avgTime.setText(avgT);
     }
 

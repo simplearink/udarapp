@@ -91,7 +91,6 @@ public class CheckerModeActivity extends AppCompatActivity {
 
         stats = new CheckerGameController();
 
-        updateWord();
         timerTextView.setText("60");
         gameTimer.start();
         updateWord();
@@ -117,7 +116,7 @@ public class CheckerModeActivity extends AppCompatActivity {
 
         @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
         public void onFinish() {
-            timerTextView.setText("0");
+            timerTextView.setText("0.0");
             finishBtn.callOnClick();
         }
     };
@@ -153,6 +152,13 @@ public class CheckerModeActivity extends AppCompatActivity {
                         user = false;
                     }
                     currentWordData.setUserAnswer(user);
+                    double ansTime = System.currentTimeMillis() - startTime;
+                    if (user == correctness) {
+                        if (bestTime > ansTime) {
+                            bestTime = ansTime;
+                        }
+                    }
+                    wholeTime += ansTime;
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -187,14 +193,19 @@ public class CheckerModeActivity extends AppCompatActivity {
             editor.putInt(ResultActivity.APP_STATS_CORRECT, correctCounter);
             editor.putInt(ResultActivity.APP_STATS_WHOLE, counter);
             double avg;
-            if (correctCounter == 0 || counter == 0) {
+            double best;
+            if (counter == 0) {
                 avg = 0.0;
-                bestTime = 0.0;
+                best = 0.0;
             } else {
+                if (correctCounter > 0) {
+                    best = bestTime / 1000;
+                } else {
+                    best = 0.0;
+                }
                 avg = wholeTime / counter / 1000;
-                bestTime = bestTime / 1000;
             }
-            editor.putString(ResultActivity.APP_STATS_BEST, String.format("%.1f", bestTime));
+            editor.putString(ResultActivity.APP_STATS_BEST, String.format("%.1f", best));
             editor.putString(ResultActivity.APP_STATS_AVG, String.format("%.1f", avg));
             editor.putInt(ResultActivity.APP_MODE, 0);
             editor.apply();
@@ -204,16 +215,13 @@ public class CheckerModeActivity extends AppCompatActivity {
     };
 
     public void updateWord() {
-        if (counter != 0) {
-            double ansTime = System.currentTimeMillis() - startTime;
-            if (user == correctness) {
-                String r = String.valueOf(correctCounter);
-                rightCounter.setText(r);
-                if (bestTime > ansTime) {
-                    bestTime = ansTime;
-                }
-            }
-            wholeTime += ansTime;
+        if (counter == 0 && queue.size() > 0) {
+            getFromQueue();
+        } else if (counter == 0) {
+            ifQueueEmptyUpdate();
+        } else {
+            String r = String.valueOf(correctCounter);
+            rightCounter.setText(r);
             mistakesCounter.setText(String.valueOf(counter - correctCounter));
             stats.add(currentWordData);
 
@@ -222,9 +230,8 @@ public class CheckerModeActivity extends AppCompatActivity {
             } else {
                 ifQueueEmptyUpdate();
             }
-        } else {
-            ifQueueEmptyUpdate();
         }
+
         startTime = System.currentTimeMillis();
     }
 
@@ -252,22 +259,22 @@ public class CheckerModeActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (queue.size() < 100) {
-                    SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
-                    connection = new ApiConnection(sharedPreferences.getBoolean(MainActivity.APP_PREFERENCES_EGE, false), 0, -1);
-                    connection.execute();
+                connection = new ApiConnection(sharedPreferences.getBoolean(MainActivity.APP_PREFERENCES_EGE, false), 0, 100);
+                connection.execute();
 
-                    String[][] res = null;
-                    try {
-                        res = connection.get();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                String[][] res = null;
+                try {
+                    res = connection.get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-                    queue.add(new CheckerResultObject(0, Integer.parseInt(res[2][0]), res[0][0], res[1][0], true, res[3][0]));
+                for (int i = 0; i < 100; i++) {
+                    queue.add(new CheckerResultObject(0, Integer.parseInt(res[2][i]), res[0][i], res[1][i], true, res[3][i]));
                 }
             }
         }).start();
@@ -283,7 +290,7 @@ public class CheckerModeActivity extends AppCompatActivity {
     private void ifQueueEmptyUpdate() {
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
-        connection = new ApiConnection(sharedPreferences.getBoolean(MainActivity.APP_PREFERENCES_EGE, false), 0, -1);
+        connection = new ApiConnection(sharedPreferences.getBoolean(MainActivity.APP_PREFERENCES_EGE, false), 0, 1);
         connection.execute();
 
         String[][] res = null;

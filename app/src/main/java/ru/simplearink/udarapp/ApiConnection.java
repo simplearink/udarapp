@@ -14,18 +14,11 @@ import java.util.Scanner;
 
 class ApiConnection extends AsyncTask<Void, Void, String[][]> {
 
-    private String wordID;
-    private String word;
-    private String correctness;
-
-    private String[] words;
-    private String[] wordsIDs;
-    private String[] wordsCorrectness;
-
     private int egeModeOn;
     private int gameMode;
     private int num;
-    private String correctWord;
+
+    private String[][] resArray;
 
 
     public ApiConnection(boolean egeMode, int mode, int numb) { // mode: 0 - checker mode; 1 - selection mode
@@ -52,21 +45,6 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
             e.printStackTrace();
         }
 
-        String[][] resArray;
-
-        if (gameMode == 0) {
-            resArray = new String[4][1];
-            resArray[0][0] = word;
-            resArray[1][0] = correctness;
-            resArray[2][0] = wordID;
-            resArray[3][0] = correctWord;
-        } else {
-            resArray = new String[3][num];
-            resArray[0] = words;
-            resArray[1] = wordsCorrectness;
-            resArray[2] = wordsIDs;
-        }
-
         return resArray;
     }
 
@@ -78,9 +56,11 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
     protected void connectApi() throws IOException {
         URL url;
         if (gameMode == 0) {
-            url = new URL("http://www.api.accent-checker.ru/v2.0/words/get_word/?type=" + egeModeOn);
+            url = new URL("http://www.api.accent-checker.ru/v2.0/words/get_word/?type=" + egeModeOn + "&num=" + num);
+            resArray = new String[4][num];
         } else if (num != 0) {
             url = new URL("http://api.accent-checker.ru/v2.0/words/get_question/?num_q=1&type=" + egeModeOn + "&num_w=" + num);
+            resArray = new String[3][num];
         } else {
             url = null;
         }
@@ -106,27 +86,30 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         while (sc.hasNext()) {
             inline += sc.nextLine();
         }
+        System.out.println(inline);
         sc.close();
 
         JsonParser parser = new JsonParser();
 
         JsonArray jsonArray = (JsonArray) parser.parse(inline);
 
-        JsonElement jsonObj = jsonArray.get(0);
+        for (int i = 0; i < num; i++) {
+            JsonElement jsonObj = jsonArray.get(i);
 
-        if (jsonObj.isJsonObject()) {
-            JsonObject jsonObject = jsonObj.getAsJsonObject();
-            word = jsonObject.get("word").toString().replace("\"", "");
-            correctness = jsonObject.get("answer").toString();
-            wordID = jsonObject.get("word_id").toString();
-            correctWord = jsonObject.get("correct_word").toString().replace("\"", "");
+            if (jsonObj.isJsonObject()) {
+                JsonObject jsonObject = jsonObj.getAsJsonObject();
+                resArray[0][i] = jsonObject.get("word").toString().replace("\"", ""); //word
+                resArray[1][i] = jsonObject.get("answer").toString(); //correctness (answer)
+                resArray[2][i] = jsonObject.get("word_id").toString(); //wordID
+                resArray[3][i] = jsonObject.get("correct_word").toString().replace("\"", ""); //correctWord
+            }
         }
     }
 
     protected void parseJSONMultiple(URL url, int num) throws IOException {
-        words = new String[num];
-        wordsIDs = new String[num];
-        wordsCorrectness = new String[num];
+        String[] words = new String[num];
+        String[] wordsIDs = new String[num];
+        String[] wordsCorrectness = new String[num];
 
         String inline = "";
         Scanner sc = new Scanner(url.openStream());
@@ -156,6 +139,10 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
             JsonObject answer = ans.getAsJsonObject();
             wordsCorrectness[0] = String.valueOf(answer.get("word_id"));
         }
+
+        resArray[0] = words;
+        resArray[1] = wordsCorrectness;
+        resArray[2] = wordsIDs;
 
     }
 }
