@@ -2,15 +2,12 @@ package ru.simplearink.udarapp;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,7 +27,6 @@ import java.util.concurrent.ExecutionException;
 
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_ANS_CORRECT;
-import static ru.simplearink.udarapp.ResultActivity.APP_STATS_CORRECT;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_QUEST_SIZE;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_CORRECT;
 import static ru.simplearink.udarapp.ResultActivity.APP_STATS_RES_CORRECT_POSITION;
@@ -70,6 +66,8 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiple_mode);
 
+        IncorrectChoiceResultObject firstObj = (IncorrectChoiceResultObject) getIntent().getSerializableExtra("choose");
+
         MobileAds.initialize(this, this.getResources().getString(R.string.appID));
 
         mAdView = findViewById(R.id.adView);
@@ -91,7 +89,11 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
 
         currentData = new IncorrectChoiceGameController();
 
-        updateWord(currentLevel);
+        if (firstObj != null) {
+            putAsFirst(firstObj);
+        } else {
+            updateWord(3);
+        }
     }
 
     AdListener mInterstitialAdListener = new AdListener() {
@@ -102,7 +104,7 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
 
         @Override
         public void onAdFailedToLoad(int errorCode) {
-           mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
         }
     };
 
@@ -238,14 +240,30 @@ public class IncorrectChoiceModeActivity extends AppCompatActivity {
         ObjectAnimator anim;
         if (correctness) {
             anim = ObjectAnimator.ofInt(applicationView,
-                    "backgroundColor", Color.GREEN, Color.WHITE);
+                    "backgroundColor", getResources().getColor(R.color.correctAnswer), Color.WHITE);
         } else {
             anim = ObjectAnimator.ofInt(applicationView,
-                    "backgroundColor", Color.RED, Color.WHITE);
+                    "backgroundColor", getResources().getColor(R.color.wrongAnswer), Color.WHITE);
         }
         anim.setDuration(700);
         anim.setEvaluator(new ArgbEvaluator());
         anim.start();
+    }
+
+    public void putAsFirst(IncorrectChoiceResultObject obj) {
+        int correctPosition = obj.getAnswer();
+        correctWordID = obj.getWordID(correctPosition);
+        words = obj.getWords();
+        ids = obj.getWordsIDs();
+
+        adapter = new IncorrectChoiceModeAdapter(this, words);
+        ListView listView = findViewById(R.id.choiceModeWords);
+        listView.setOnItemClickListener(oclItem);
+        listView.setAdapter(adapter);
+
+        currentQuestion = obj;
+        currentData.add(currentQuestion);
+        startTime = System.currentTimeMillis();
     }
 
     @Override

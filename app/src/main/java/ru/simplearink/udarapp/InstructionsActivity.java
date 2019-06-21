@@ -14,11 +14,13 @@ public class InstructionsActivity extends AppCompatActivity {
     private TextView correctDot;
     private TextView incorrectDot;
     private Button ok;
+    private CheckerResultObject cro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instructions);
+        cro = (CheckerResultObject) getIntent().getSerializableExtra("checker");
 
         correctDot = findViewById(R.id.dotCorrect);
         incorrectDot = findViewById(R.id.dotIncorrect);
@@ -39,6 +41,7 @@ public class InstructionsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(InstructionsActivity.this, CheckerModeActivity.class);
+            intent.putExtra("checker", cro);
             startActivity(intent);
             InstructionsActivity.this.finish();
         }

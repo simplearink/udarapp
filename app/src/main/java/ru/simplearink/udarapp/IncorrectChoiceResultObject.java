@@ -1,8 +1,9 @@
 package ru.simplearink.udarapp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class IncorrectChoiceResultObject {
+public class IncorrectChoiceResultObject implements Serializable {
     private int answer = -1;
     private int userAnswer = -1;
     private ArrayList<String> wordsIDs;

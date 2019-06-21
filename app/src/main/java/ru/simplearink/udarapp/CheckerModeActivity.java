@@ -62,6 +62,7 @@ public class CheckerModeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checker_mode);
+        CheckerResultObject firstObj = (CheckerResultObject) getIntent().getSerializableExtra("checker");
         queue = new ArrayList<>();
         makeQueue();
 
@@ -91,9 +92,11 @@ public class CheckerModeActivity extends AppCompatActivity {
 
         stats = new CheckerGameController();
 
+        queue.add(0, firstObj);
+        getFromQueue();
+        startTime = System.currentTimeMillis();
         timerTextView.setText("60");
         gameTimer.start();
-        updateWord();
     }
 
     AdListener mInterstitialAdListener = new AdListener() {
@@ -219,7 +222,7 @@ public class CheckerModeActivity extends AppCompatActivity {
             getFromQueue();
         } else if (counter == 0) {
             ifQueueEmptyUpdate();
-        } else {
+        }  else {
             String r = String.valueOf(correctCounter);
             rightCounter.setText(r);
             mistakesCounter.setText(String.valueOf(counter - correctCounter));
@@ -245,12 +248,12 @@ public class CheckerModeActivity extends AppCompatActivity {
         ObjectAnimator anim;
         if (correctness) {
             anim = ObjectAnimator.ofInt(applicationView,
-                    "backgroundColor", Color.GREEN, Color.WHITE);
+                    "backgroundColor", getResources().getColor(R.color.correctAnswer), Color.WHITE);
         } else {
             anim = ObjectAnimator.ofInt(applicationView,
-                    "backgroundColor", Color.RED, Color.WHITE);
+                    "backgroundColor", getResources().getColor(R.color.wrongAnswer), Color.WHITE);
         }
-        anim.setDuration(500);
+        anim.setDuration(700);
         anim.setEvaluator(new ArgbEvaluator());
         anim.start();
     }
@@ -325,6 +328,17 @@ public class CheckerModeActivity extends AppCompatActivity {
             usedFromQueue = 0;
         }
         swipeCounter = 0;
+    }
+
+    public void putAsFirst(CheckerResultObject obj) {
+        currentWordData = obj;
+
+        String currentWord = obj.getWord();
+
+        correctness = correct(obj.getAnswer());
+
+        updateTextView.setText(currentWord);
+        startTime = System.currentTimeMillis();
     }
 
     @Override

@@ -17,6 +17,7 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
     private int egeModeOn;
     private int gameMode;
     private int num;
+    private int questionsNumber;
 
     private String[][] resArray;
 
@@ -30,6 +31,19 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
 
         gameMode = mode;
         num = numb;
+        questionsNumber = numb;
+    }
+
+    public ApiConnection(boolean egeMode, int mode, int wordsNum, int questNum) {
+        if (egeMode) {
+            egeModeOn = 1;
+        } else {
+            egeModeOn = 0;
+        }
+
+        gameMode = mode;
+        num = wordsNum;
+        questionsNumber = questNum;
     }
 
     @Override
@@ -59,8 +73,8 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
             url = new URL("http://www.api.accent-checker.ru/v2.0/words/get_word/?type=" + egeModeOn + "&num=" + num);
             resArray = new String[4][num];
         } else if (num != 0) {
-            url = new URL("http://api.accent-checker.ru/v2.0/words/get_question/?num_q=1&type=" + egeModeOn + "&num_w=" + num);
-            resArray = new String[3][num];
+            url = new URL("http://api.accent-checker.ru/v2.0/words/get_question/?num_q=" + questionsNumber + "&type=" + egeModeOn + "&num_w=" + num);
+            resArray = new String[3*questionsNumber][num];
         } else {
             url = null;
         }
@@ -74,7 +88,7 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
             if (gameMode == 0) {
                 parseJSON(url);
             } else {
-                parseJSONMultiple(url, num);
+                parseJSONMultiple(url, num, questionsNumber);
             }
         }
         conn.disconnect();
@@ -106,7 +120,7 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         }
     }
 
-    protected void parseJSONMultiple(URL url, int num) throws IOException {
+    protected void parseJSONMultiple(URL url, int num, int questNum) throws IOException {
         String[] words = new String[num];
         String[] wordsIDs = new String[num];
         String[] wordsCorrectness = new String[num];
@@ -116,33 +130,36 @@ class ApiConnection extends AsyncTask<Void, Void, String[][]> {
         while (sc.hasNext()) {
             inline += sc.nextLine();
         }
+        System.out.println(inline);
         sc.close();
 
         JsonParser parser = new JsonParser();
 
         JsonArray jsonArray = (JsonArray) parser.parse(inline);
 
-        JsonElement jsonObj = jsonArray.get(0);
+        for (int j = 0; j < questNum; j++) {
+            JsonElement jsonObj = jsonArray.get(j);
 
-        if (jsonObj.isJsonObject()) {
-            JsonObject jsonObject = jsonObj.getAsJsonObject();
-            JsonArray question = (JsonArray) jsonObject.get("question");
-            for (int i = 0; i < num; i++) {
-                JsonElement jsonElem = question.get(i);
-                if (jsonElem.isJsonObject()) {
-                    JsonObject jsonOb = jsonElem.getAsJsonObject();
-                    wordsIDs[i] = jsonOb.get("word_id").toString();
-                    words[i] = jsonOb.get("word").toString();
+            if (jsonObj.isJsonObject()) {
+                JsonObject jsonObject = jsonObj.getAsJsonObject();
+                JsonArray question = (JsonArray) jsonObject.get("question");
+                for (int i = 0; i < num; i++) {
+                    JsonElement jsonElem = question.get(i);
+                    if (jsonElem.isJsonObject()) {
+                        JsonObject jsonOb = jsonElem.getAsJsonObject();
+                        wordsIDs[i] = jsonOb.get("word_id").toString();
+                        words[i] = jsonOb.get("word").toString();
+                    }
                 }
+                JsonElement ans = jsonObject.get("answer");
+                JsonObject answer = ans.getAsJsonObject();
+                wordsCorrectness[0] = String.valueOf(answer.get("word_id"));
             }
-            JsonElement ans = jsonObject.get("answer");
-            JsonObject answer = ans.getAsJsonObject();
-            wordsCorrectness[0] = String.valueOf(answer.get("word_id"));
-        }
 
-        resArray[0] = words;
-        resArray[1] = wordsCorrectness;
-        resArray[2] = wordsIDs;
+            resArray[j*3] = words;
+            resArray[j*3 + 1] = wordsCorrectness;
+            resArray[j*3 + 2] = wordsIDs;
+        }
 
     }
 }

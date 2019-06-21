@@ -1,6 +1,6 @@
 package ru.simplearink.udarapp;
 
-import java.io.Serializable;;
+import java.io.Serializable;
 
 public class CheckerResultObject implements Serializable {
     private int iter;
