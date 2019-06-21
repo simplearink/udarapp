@@ -92,9 +92,10 @@ public class CheckerModeActivity extends AppCompatActivity {
 
         stats = new CheckerGameController();
 
-        queue.add(0, firstObj);
-        getFromQueue();
-        startTime = System.currentTimeMillis();
+        if (firstObj != null) {
+            queue.add(0, firstObj);
+        }
+        updateWord();
         timerTextView.setText("60");
         gameTimer.start();
     }
@@ -328,17 +329,6 @@ public class CheckerModeActivity extends AppCompatActivity {
             usedFromQueue = 0;
         }
         swipeCounter = 0;
-    }
-
-    public void putAsFirst(CheckerResultObject obj) {
-        currentWordData = obj;
-
-        String currentWord = obj.getWord();
-
-        correctness = correct(obj.getAnswer());
-
-        updateTextView.setText(currentWord);
-        startTime = System.currentTimeMillis();
     }
 
     @Override
